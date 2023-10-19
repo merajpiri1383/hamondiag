@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     # internal apps
     'authentication.apps.AuthenticationConfig',
     'product.apps.ProductConfig',
+    # external apps 
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

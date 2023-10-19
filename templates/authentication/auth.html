@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block title %}
+    ورود
+{% endblock %} 
+{% block link %}
+    <link rel="stylesheet" href="{% static 'authentication/css/auth.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="form-auth">
+    <form method="post">
+    <h2 class="form-group-title">ورود | ثبت نام</h2>
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <label>{% render_field field.label %}</label>
+                {% render_field field class="form-group-input" %}
+            </div>
+        {% endfor %}
+        <div class="form-group-btn">
+            <button type="submit">ورود</button>
+        {% if form.errors %}
+            <div class="form-errors">
+            {% for field in form %}
+                {% for error in field.errors %}
+                {{ error }}
+                {% endfor %}
+            {% endfor %}
+            </div>
+        {% endif %}
+    </form>
+    </div>
+{% endblock %}

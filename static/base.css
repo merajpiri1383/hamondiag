@@ -1,16 +1,18 @@
+@font-face{
+    font-family: vazir;
+    src: url("fonts/Vazir.eot") format("eot");
+}
 body{
     direction: rtl;
+    font-family: vazir;
 }.hide{
     display: none;
-}header{
-    position: absolute;
-    right: 10px;
-    padding: 15px;
-    left: 10px;
+}header div{
+    padding: 5px;
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.301);
     border-radius: 35px;
     display: grid;
-    grid-template-columns: 8fr 2fr;
+    grid-template-columns: 8fr 1fr;
 }#navbar-links-section ul{
     list-style: none;
     display: flex;
@@ -20,10 +22,10 @@ body{
 }.fa{
     font-size: 30px;
     margin: 0 15px;
-    color: rgb(0, 110, 255);
+    color: #ff2802;
 }#link-search input{
     border: 0;
-    outline: 1px solid rgb(0, 110, 255);   
+    outline: 1px solid #ff2802;   
     border-radius: 15px; 
     width: 50%;
     padding: 10px;
@@ -54,7 +56,11 @@ body{
         padding: 20px;
         border-radius: 25px;
         box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.164);
-    }header{
+    }header div{
         grid-template-columns: 1fr;
     }
+}#brand-section{
+    width: 140px;
+}#content{
+    margin: 20px;
 }
