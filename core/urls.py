@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',MainView.as_view(),name="main"),
     path("auth/",include("authentication.urls")),
+    path("__drbug__/",include("debug_toolbar.urls")),
 ]
 if settings.DEBUG :
     urlpatterns += static(

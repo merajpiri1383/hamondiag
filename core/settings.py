@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     # internal apps
     'authentication.apps.AuthenticationConfig',
     'product.apps.ProductConfig',
-    # external apps 
-    'widget_tweaks',
+    # external apps
+    "debug_toolbar"
 ]
 
 MIDDLEWARE = [
@@ -54,8 +54,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
-
+AUTHENTICATION_BACKENDS = [
+    "authentication.backend.AuthBackend",
+    "django.contrib.auth.backends.ModelBackend"
+]
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 ROOT_URLCONF = 'core.urls'
 
 TEMPLATES = [

@@ -1,33 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-    ورود
-{% endblock %} 
+تایید شماره
+{% endblock %}
 {% block link %}
     <link rel="stylesheet" href="{% static 'authentication/css/auth.css' %}">
 {% endblock %}
 {% block content %}
     <div class="form-auth">
     <form method="post">
-    <h2 class="form-group-title">ورود | ثبت نام</h2>
+    <h2 class="form-group-title">تایید شماره</h2>
         {% csrf_token %}
         {% for field in form %}
             <div class="form-group">
                 {{ field }}
             </div>
         {% endfor %}
-        <div class="form-group-btn">
-            <button type="submit">ورود</button>
-        </div>
-        {% if form.errors %}
-            <div class="form-errors">
-            {% for field in form %}
-                {% for error in field.errors %}
+    <div class="form-group-btn">
+        <button type="submit">ارسال</button>
+    </div>
+    {% if form.errors %}
+       <div class="form-errors">
+        {% for field in form %}
+            {% for error in field.errors %}
                 {{ error }}
-                {% endfor %}
             {% endfor %}
-            </div>
-        {% endif %}
+        {% endfor %}
+       </div>
+    {% endif %}
     </form>
     </div>
 {% endblock %}
