@@ -6,9 +6,7 @@ class AuthForm(forms.ModelForm):
         fields = ["mobile"]
         widgets = {
             "mobile" : forms.TextInput(attrs={
-                "type":"number",
                 "placeholder": "شماره موبایل",
-                "class": "form-group-input"
             })
         }
     def clean(self):
@@ -19,9 +17,7 @@ class AuthForm(forms.ModelForm):
             self.add_error("mobile","شماره معتبر نمی باشد")
 class VerifyForm(forms.Form):
     verify_code = forms.IntegerField(widget=forms.TextInput(attrs={
-        "type": "number",
         "placeholder": "کد تایید",
-        "class": "form-group-input",
     }))
     def clean(self):
         code = str(self.cleaned_data.get("verify_code"))

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 {% block title %}
 تایید شماره
 {% endblock %}
@@ -7,27 +8,14 @@
     <link rel="stylesheet" href="{% static 'authentication/css/auth.css' %}">
 {% endblock %}
 {% block content %}
-    <div class="form-auth">
-    <form method="post">
-    <h2 class="form-group-title">تایید شماره</h2>
+    <div class="container m-5">
+    <form method="post" class="card shadow-lg m-5 p-5">
         {% csrf_token %}
+        <h2 class="text-center my-3">کد تایید</h2>
         {% for field in form %}
-            <div class="form-group">
-                {{ field }}
-            </div>
+            {% render_field field class="form-control-lg rounded-pill form-control m-3" %}
         {% endfor %}
-    <div class="form-group-btn">
-        <button type="submit">ارسال</button>
-    </div>
-    {% if form.errors %}
-       <div class="form-errors">
-        {% for field in form %}
-            {% for error in field.errors %}
-                {{ error }}
-            {% endfor %}
-        {% endfor %}
-       </div>
-    {% endif %}
+    <button class="btn btn-outline-danger btn-lg rounded-pill" type="submit">ورود</button>
     </form>
     </div>
 {% endblock %}

@@ -1,5 +1,5 @@
 {% load static %}
-<header>
+<header class="mt-4">
     <div>
         <section id="btn-hambur-section" class="hide flex-disply">
             <i class="fa fa-bars"></i>
@@ -7,7 +7,7 @@
         <section id="navbar-links-section">
             <ul>
                 <li>
-                    <a class="link">
+                    <a href="{% url 'product:main' %}" class="link">
                         <i class="fa fa-home"></i>
                     </a>
                 </li>
@@ -35,7 +35,7 @@
     <section id="link-section-mobile" class="hide">
         <ul>
             <li>
-                <a class="link">
+                <a href="{% url 'product:main' %}" class="link">
                     <i class="fa fa-home"></i>
                 </a>
             </li>

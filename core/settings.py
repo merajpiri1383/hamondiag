@@ -41,11 +41,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # internal apps
     'authentication.apps.AuthenticationConfig',
+    'django.contrib.humanize',
     'product.apps.ProductConfig',
     # external apps
-    "debug_toolbar"
+    "debug_toolbar",
+    'taggit',
+    'sorl.thumbnail',
+    'widget_tweaks',
 ]
-
+from django.contrib.humanize.templatetags import  humanize
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -102,7 +106,7 @@ MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
-
+KAVENEGAR_API_KEY = "562F6843774C59744C796C4A6F79612B4A3657684778567852494F416B574F61654F376C314737707236453D"
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
