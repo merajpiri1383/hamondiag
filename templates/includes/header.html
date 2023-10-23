@@ -1,40 +1,49 @@
 {% load static %}
 <header>
     <div>
-        <section id="btn-hambur-section" class="hide">
-        <i class="fa fa-bars"></i>
-    </section>
-    <section id="navbar-links-section">
+        <section id="btn-hambur-section" class="hide flex-disply">
+            <i class="fa fa-bars"></i>
+        </section>
+        <section id="navbar-links-section">
+            <ul>
+                <li>
+                    <a class="link">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="link">
+                        <i class="fa fa-shopping-cart"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="link" href="{% url 'login' %}">
+                        <i class="fa fa-user"></i>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <section id="band-section">
+            <img id="brand-section" src="{% static 'images/final.svg' %}">
+        </section>
+        <section id="user-icon-section-mobile" class="hide flex-disply">
+            <a href="{% url 'login' %}">
+                <i class="fa fa-user"></i>
+            </a>
+        </section>
+    </div>
+    <section id="link-section-mobile" class="hide">
         <ul>
-            <li class="link">
-                <a>
+            <li>
+                <a class="link">
                     <i class="fa fa-home"></i>
                 </a>
             </li>
-            <li class="link">
-                <a>
+            <li>
+                <a class="link">
                     <i class="fa fa-shopping-cart"></i>
                 </a>
             </li>
-            <li class="link">
-                {% if user.is_authenticated %}
-                    <a href="{% url 'login' %}">
-                        <i class="fa fa-user"></i>
-                    </a>
-                    {% else %}
-                    <a href="{% url 'login' %}">
-                        <i class="fa fa-user"></i>
-                    </a>
-                {% endif %}
-            </li>
-            <li class="link" id="link-search">
-                <a>
-                    <i class="fa fa-search"></i>
-                </a>
-                <input type="text" >
-            </li>
         </ul>
     </section>
-    <img id="brand-section" src="{% static 'images/final.svg' %}">
-    </div>
 </header>

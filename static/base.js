@@ -1,19 +1,23 @@
-const brand = $("#brand-section");
 const barSection = $("#btn-hambur-section");
 const linkSection = $("#navbar-links-section");
+const iconMobile = $("#user-icon-section-mobile");
+const linkSectionMobile = $("#link-section-mobile");
 const showAndHide = ()=>{
     if(window.innerWidth <= 768){
         barSection.removeClass("hide")
-        brand.addClass("hide")
         linkSection.addClass("hide")
+        iconMobile.removeClass("hide")
+        linkSectionMobile.removeClass("hide-important")
     }if(window.innerWidth > 768){
         barSection.addClass("hide");
-        brand.removeClass("hide");
         linkSection.removeClass("hide");
+        iconMobile.addClass("hide");
+        linkSectionMobile.addClass("hide");
+        linkSectionMobile.addClass("hide-important")
     }
 };
 barSection.click(()=>{
-    linkSection.toggle(1000);
+    linkSectionMobile.toggle(800);
 })
 showAndHide();
 window.addEventListener("resize",()=>{
