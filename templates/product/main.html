@@ -13,8 +13,8 @@
     <div class="container m-auto shadow-lg text-center mt-3 rounded p-3 row">
     {% for product in products %}
         <div class="col-lg-4 col-12 col-sm-6 ">
-        <div class="{% if product.discount > 0 %}discount{% endif %} card m-2 shadow rounded-lg p-4 product">
-            {% if product.discount > 0 %}
+        <div class="{% if product.discount  %}discount{% endif %} card m-2 shadow rounded-lg p-4 product">
+            {% if product.discount %}
                 <div class="bar-discount fw-bolder">
                 {{ product.discount }}درصد تخفیف
                 </div>
@@ -31,15 +31,15 @@
             </small>
         </div>
         <div class="btn-group">
-            <button class="btn btn-outline-primary"> خرید</button>
-             <button class="btn btn-outline-danger">مشاهده</button>
+            <a class="btn btn-outline-primary"> خرید</a>
+             <a href="{% url 'product:product-detail' product.slug %}" class="btn btn-outline-danger">مشاهده</a>
         </div>
         </div>
         </div>
     {% endfor %}
     </div>
     <div class="container text-center">
-    <div class="btn-group  w-50 m-auto mt-3">
+    <div class="btn-group  w-50 m-auto my-3">
         {% if products.has_previous %}
         <a class="btn btn-outline-danger" href="?p={{ products.previous_page_number }}">previous</a>
     {% endif %}

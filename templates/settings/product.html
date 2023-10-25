@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block title %}
+    محصول
+{% endblock %}
+{% block content %}
+    <div class="container">
+    <div class="card my-4 shadow">
+        <form method="post" enctype="multipart/form-data" class="card-body">
+        {% csrf_token %}
+        {% for field in form %}
+            {% render_field field class="form-control my-2" placeholder=field.label %}
+        {% endfor %}
+        <button class="btn btn-outline-danger form-control" type="submit">افزودن</button>
+    </form>
+    </div>
+    </div>
+{% endblock %}

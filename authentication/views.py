@@ -44,8 +44,12 @@ class VerifyView(View):
                 if x:
                     login(request,x)
                     # redirect to products
+                    return redirect("product:main")
                 else :
                     form.add_error("verify_code", "کد تایید نامعتبر می باشد ")
             except :
                 form.add_error("verify_code","کد تایید نامعتبر می باشد ")
         return render(request,"authentication/verify.html",{"form":form})
+class ProfileView(View):
+    def get(self,request):
+        return render(request,"authentication/profile.html")

@@ -7,20 +7,34 @@
         <section id="navbar-links-section">
             <ul>
                 <li>
-                    <a href="{% url 'product:main' %}" class="link">
+                    <a data-toggle="tooltip" data-placement="top" title="خانه"
+                       href="{% url 'product:main' %}" class="link">
                         <i class="fa fa-home"></i>
                     </a>
                 </li>
                 <li>
-                    <a class="link">
+                    <a class="link" data-toggle="tooltip" data-placement="bottom" title="سبد خرید">
                         <i class="fa fa-shopping-cart"></i>
                     </a>
                 </li>
                 <li>
-                    <a class="link" href="{% url 'login' %}">
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'profile' %}" class="link" data-toggle="tooltip" title="پروفایل">
                         <i class="fa fa-user"></i>
+                        </a>
+                        {% else %}
+                        <a href="{% url 'login' %}" class="link" data-toggle="tooltip" title="ورود | ثبت نام">
+                        <i class="fa fa-user"></i>
+                        </a>
+                    {% endif %}
+                </li>
+                {% if request.user.is_staff %}
+                    <li>
+                    <a href="{% url 'settings:settings' %}" class="link" data-toggle="tooltip" data-placement="bottom" title="تنظیمات">
+                        <i class="fa fa-cog"></i>
                     </a>
                 </li>
+                {% endif %}
             </ul>
         </section>
         <section id="band-section">
@@ -44,6 +58,13 @@
                     <i class="fa fa-shopping-cart"></i>
                 </a>
             </li>
+            {% if request.user.is_staff %}
+                    <li>
+                    <a href="{% url 'settings:settings' %}" class="link" data-toggle="tooltip" data-placement="bottom" title="تنظیمات">
+                        <i class="fa fa-cog"></i>
+                    </a>
+                </li>
+                {% endif %}
         </ul>
     </section>
 </header>

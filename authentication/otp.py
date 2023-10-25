@@ -19,7 +19,7 @@ def send_otp_thread(user):
             "sender":"1000011000101",
             "receptor": user.mobile,
             "message" : f"""
-            کد ورود شما به هامون دیگاگ { user.otp }می باشد 
+            کد ورود شما به هامون دیاگ { user.otp }می باشد 
             """
         }
         api.sms_send(params)

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+    تنظیمات
+{% endblock %}
+{% block content %}
+    <div class="container">
+     <div class="navbar bg-danger my-4 p-2 rounded-pill navbar-md-expand">
+    <div class="navbar-nav d-md-flex d-none flex-row-reverse p-4 bg-light rounded-pill w-100 btn-group">
+        <a href="{% url 'settings:add-product' %}" class="nav-item nav-link btn btn-outline-danger">افزودن محصول</a>
+        <a href="{% url 'settings:add-tag' %}" class="nav-item nav-link btn btn-outline-danger">افزودن تگ</a>
+        <a href="{% url 'settings:add-category' %}" class="nav-item nav-link btn btn-outline-danger">افزودن دسته بندی</a>
+    </div>
+    <div class="navbar-nav d-md-none d-flex bg-light rounded-pill p-5 w-100">
+        <a href="{% url 'settings:add-product' %}" class="nav-item nav-link btn rounded-pill my-1 btn-outline-danger d-block">افزودن محصول</a>
+        <a href="{% url 'settings:add-tag' %}" class="nav-item nav-link btn rounded-pill my-1 btn-outline-danger d-block">افزودن تگ</a>
+        <a href="{% url 'settings:add-category' %}" class="nav-item nav-link btn rounded-pill my-1 btn-outline-danger d-block">افزودن دسته بندی</a>
+    </div>
+    </div>
+    </div>
+{% endblock %}

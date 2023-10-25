@@ -4,4 +4,5 @@ app_label = "authentication"
 urlpatterns = [
     path("login/",views.AuthView.as_view(),name="login"),
     path("verify/<str:phone>/",views.VerifyView.as_view(),name="verify"),
+    path("profile/",views.ProfileView.as_view(),name="profile"),
 ]

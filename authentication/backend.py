@@ -5,6 +5,8 @@ class AuthBackend(ModelBackend):
         try :
             user = get_user_model().objects.get(mobile=mobile)
             if int(user.otp) == otp :
+                user.is_active = True
+                user.save()
                 return user
             return None
         except get_user_model().DoesNotExist :
