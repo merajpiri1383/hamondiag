@@ -85,4 +85,7 @@ header div{
     }.link{
         outline: 0;
     }
+}.sticky-bottom{
+    position: fixed;
+    bottom: 5px;
 }

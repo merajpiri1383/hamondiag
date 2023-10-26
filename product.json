@@ -1,0 +1,132 @@
+[
+{
+  "model": "product.category",
+  "pk": 8,
+  "fields": {
+    "name": "category 2",
+    "slug": "category-2"
+  }
+},
+{
+  "model": "product.category",
+  "pk": 9,
+  "fields": {
+    "name": "product 3",
+    "slug": "product-3"
+  }
+},
+{
+  "model": "product.tag",
+  "pk": 3,
+  "fields": {
+    "name": "tag 3",
+    "slug": "tag-3"
+  }
+},
+{
+  "model": "product.tag",
+  "pk": 4,
+  "fields": {
+    "name": "tag 1",
+    "slug": "tag-1"
+  }
+},
+{
+  "model": "product.product",
+  "pk": 1,
+  "fields": {
+    "name": "product 1",
+    "slug": "product-1",
+    "price": 10000,
+    "image": "media/peakpx.jpg",
+    "created": "2023-10-25T07:14:05.790Z",
+    "updated": "2023-10-25T13:11:05.030Z",
+    "discount": 0,
+    "category": [],
+    "tags": []
+  }
+},
+{
+  "model": "product.product",
+  "pk": 2,
+  "fields": {
+    "name": "product 2",
+    "slug": "product-2",
+    "price": 60000,
+    "image": "media/uwp3859119.png",
+    "created": "2023-10-25T07:14:49.967Z",
+    "updated": "2023-10-25T07:14:49.967Z",
+    "discount": 0,
+    "category": [],
+    "tags": []
+  }
+},
+{
+  "model": "product.product",
+  "pk": 3,
+  "fields": {
+    "name": "product 3",
+    "slug": "product-3",
+    "price": 12000,
+    "image": "media/uwp3880079_kjeqDgd.jpeg",
+    "created": "2023-10-25T11:38:09.438Z",
+    "updated": "2023-10-25T13:09:28.390Z",
+    "discount": 50,
+    "category": [],
+    "tags": []
+  }
+},
+{
+  "model": "product.product",
+  "pk": 4,
+  "fields": {
+    "name": "product 4",
+    "slug": "product-4",
+    "price": 11000,
+    "image": "media/uwp3880079_Qot8edm.jpeg",
+    "created": "2023-10-25T11:39:07.226Z",
+    "updated": "2023-10-25T13:09:15.346Z",
+    "discount": 20,
+    "category": [],
+    "tags": []
+  }
+},
+{
+  "model": "product.product",
+  "pk": 5,
+  "fields": {
+    "name": "product 5",
+    "slug": "product-5",
+    "price": 8000,
+    "image": "media/uwp3852199.jpeg",
+    "created": "2023-10-25T11:39:59.504Z",
+    "updated": "2023-10-26T06:32:20.225Z",
+    "discount": null,
+    "category": [
+      9
+    ],
+    "tags": [
+      3
+    ]
+  }
+},
+{
+  "model": "product.product",
+  "pk": 6,
+  "fields": {
+    "name": "prodct 6",
+    "slug": "prodct-6",
+    "price": 50000,
+    "image": "media/wp1947872-manjaro-wallpapers.png",
+    "created": "2023-10-25T13:19:46.165Z",
+    "updated": "2023-10-26T06:30:45.261Z",
+    "discount": null,
+    "category": [
+      8
+    ],
+    "tags": [
+      4
+    ]
+  }
+}
+]

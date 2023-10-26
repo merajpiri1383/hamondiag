@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'product.apps.ProductConfig',
     'settings.apps.SettingsConfig',
+    'blog.apps.BlogConfig',
     # external apps
     'sorl.thumbnail',
     'widget_tweaks',

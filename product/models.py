@@ -22,6 +22,7 @@ class Product(models.Model):
     name = models.CharField(max_length=300,unique=True)
     slug = models.SlugField(unique=True,blank=True,null=True)
     price = models.IntegerField(null=True,blank=True)
+    is_exist = models.BooleanField(default=True)
     image = models.ImageField(upload_to="media")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

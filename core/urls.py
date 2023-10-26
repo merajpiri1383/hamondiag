@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/hamon-diag/', admin.site.urls),
     path('',include("product.urls")),
     path("auth/",include("authentication.urls")),
+    path("blog/",include("blog.urls")),
 ]
 if settings.DEBUG :
     urlpatterns += static(

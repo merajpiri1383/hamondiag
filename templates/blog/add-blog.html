@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block title %}
+    افزودن مقاله
+{% endblock %}
+{% block content %}
+    <div class="container">
+    <div class="card my-4">
+        <form method="post" enctype="multipart/form-data" class="card-body">
+            {% csrf_token %}
+            {% for field in form %}
+                {% render_field field class="form-control my-2" placeholder=field.label %}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <p class="text-danger">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            <button class="btn w-100 btn-outline-danger" type="submit">
+                افزودن
+            </button>
+        </form>
+    </div>
+    <div class="card">
+        <nav class="card-body">
+            {% for blog in blogs %}
+                <li class="d-flex justify-content-between">
+                <h4 class="fw-bold">{{ blog.name }}</h4>
+                <a href="{% url 'edit-blog' blog.slug %}" class="btn btn-outline-warning">تغییر</a>
+                </li>
+            {% endfor %}
+        </nav>
+    </div>
+    </div>
+{% endblock %}

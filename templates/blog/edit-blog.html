@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% load widget_tweaks %}
+{% load static %}
+{% block title %}
+    تغییر مقاله
+{% endblock %} 
+{% block content %}
+<div class="container row">
+    <div class="col-12 col-md-4">
+        <div class="card my-md-5 my-3 sticky-md-top">
+            <h6 class="text-muted p-2">آخرین مقالات</h6>
+            <div class="card-body list-unstyled">
+                {% for b in last_blogs %}
+                <li class="my-1 text-center border border-danger p-2 rounded">
+                    <a href="{% url 'edit-blog' blog.slug %}" class="fw-bolder text-danger text-decoration-none">{{ b.name }}</a>
+                </li>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="card my-md-5 my-2 col-12 col-md-8">
+        <div class="card-body">
+            <div>
+                {% thumbnail blog.picture "500x400" crop="center" as img %}
+                <img src="{{ img.url }}" class="img-fluid w-100 rounded">
+                {% endthumbnail %} 
+            </div>
+        </div>
+    </div>
+    <div class="col-12 d-flex justify-content-center">
+        <div class="col-6 rounded-3 sticky-bottom shadow-lg p-3">
+            <div class="btn-group d-flex flex-row-reverse">
+                <button data-bs-toggle="modal" data-bs-target="#modal_image" class="btn btn-outline-danger">افزودن تصویر</button>
+                <button data-bs-toggle="modal" data-bs-target="#modal_text"  class="btn btn-outline-danger">افزودن متن</button>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" id="modal_image">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                        <h3 class="modal-title">افزودن تصویر</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" enctype="multipart/form-data" id="form_add_text">
+                            {% csrf_token %}
+                            {% for field in pictureform %}
+                                {% render_field field class="form-control my-2"  %}
+                                {% if field.errors %}
+                                    {% for error in field.errors %}
+                                        <p class="text-danger">{{error}}</p>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        <button class="btn btn-outline-danger" type="submit">افزودن</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" id="modal_text">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                        <h3 class="modal-title">افزودن متن</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            {% for field in textform %}
+                                {% render_field field class="form-control my-2"  %}
+                                {% if field.errors %}
+                                    {% for error in field.errors %}
+                                        <p class="text-danger">{{error}}</p>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        <button id="btn_submit_add_img" class="btn btn-outline-danger" type="submit">افزودن</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
