@@ -28,7 +28,7 @@ class Product(models.Model):
     discount = models.IntegerField(validators=[
         MinValueValidator(0),MaxValueValidator(100)
     ],null=True,blank=True)
-    category = models.ManyToManyField(to=Category,blank=True)
+    category = models.ManyToManyField(to=Category,blank=True,related_name="products")
     tags = models.ManyToManyField(to=Tag,blank=True)
     def __str__(self):
         return self.name

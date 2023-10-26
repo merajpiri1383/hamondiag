@@ -9,11 +9,25 @@
 </head>
 <body>
 {% include 'includes/header.html' %}
-<div class="container">
+<div class="text-center my-5" id="spinner">
+    <div class="spinner-border p-5 text-danger"></div>
+</div>
+<div class="container hide" id="content">
     {% block content %}{% endblock %}
 </div>
 {% include 'includes/footer.html' %}
 {% include 'includes/scripts.html' %}
 {% block script %}{% endblock %}
+<script>
+    const spinner = $("#spinner");
+    const content = $("#content");
+    $.ajax({
+        "url":window.location.href,
+        success : ()=>{
+            spinner.fadeOut(800);
+            content.toggle(800);
+        }
+    })
+</script>
 </body>
 </html>

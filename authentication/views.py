@@ -53,3 +53,6 @@ class VerifyView(View):
 class ProfileView(View):
     def get(self,request):
         return render(request,"authentication/profile.html")
+def logout_view(request):
+    logout(request)
+    return redirect("product:main")

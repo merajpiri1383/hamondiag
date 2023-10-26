@@ -7,14 +7,20 @@
     <link rel="stylesheet" href="{% static 'authentication/css/auth.css' %}" >
 {% endblock %}
 {% block content %}
-     <div class="navbar bg-danger my-4 p-2 rounded-pill navbar-md-expand">
-    <div class="navbar-nav d-md-flex d-none flex-row-reverse bg-light rounded-pill p-3 w-100 btn-group">
+     <div class="navbar my-4 p-2 border-danger border navbar-md-expand rounded-pill">
+    <div class="navbar-nav d-md-flex d-none flex-row-reverse p-3 w-100 btn-group">
         <a class="nav-item nav-link btn btn-outline-danger">خرید های انجام شده</a>
         <a class="nav-item nav-link btn btn-outline-danger">اطلاعات پستی</a>
     </div>
-    <div class="navbar-nav d-md-none d-flex bg-light rounded-pill p-3 w-100">
+    <div class="navbar-nav d-md-none d-flex rounded-pill p-3 w-100">
         <a class="nav-item nav-link btn rounded-pill my-1 btn-outline-danger d-block">خرید های انجام شده</a>
         <a class="nav-item nav-link btn rounded-pill my-1 btn-outline-danger d-block">اطلاعات پستی</a>
     </div>
+    </div>
+    <div class="card border border-danger">
+        <div class="card-body d-flex justify-content-between">
+            <p class="fw-bold text-danger mb-0 d-flex align-items-center">موبایل : {{request.user.mobile}}</p>
+            <a href="{% url 'logout' %}" class="btn btn-outline-danger">خروج</a>
+        </div>
     </div>
 {% endblock %}

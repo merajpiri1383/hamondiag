@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'widget_tweaks',
 ]
-from django.contrib.humanize.templatetags import  humanize
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "product:main"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

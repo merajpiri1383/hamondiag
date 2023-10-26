@@ -10,33 +10,56 @@
     <link rel="stylesheet" href="{% static 'product/products.css' %}">
 {% endblock %}
 {% block content %}
-    <div class="container m-auto shadow-lg text-center mt-3 rounded p-3 row">
-    {% for product in products %}
-        <div class="col-lg-4 col-12 col-sm-6 ">
-        <div class="{% if product.discount  %}discount{% endif %} card m-2 shadow rounded-lg p-4 product">
-            {% if product.discount %}
-                <div class="bar-discount fw-bolder">
-                {{ product.discount }}درصد تخفیف
+    <div class="row">
+        <div class="col-12 col-md-3">
+            <div class="card my-3 shadow sticky-md-top">
+                <nav class="card-body list-unstyled list-group">
+                    <div class="border border-danger text-center p-2 rounded-pill m-auto my-1 w-75">
+                        <a href="?d=true" class="text-decoration-none
+                                                text-danger">تخفیف ها 
+                        </a>
+                    </div>
+                    {% for category in categorys %}
+                        <div class="border border-danger text-center p-2 rounded-pill m-auto my-1 w-75">
+                            <a href="?c={{category.slug}}" class="text-decoration-none                      
+                            text-danger">{{ category.name }}
+                            </a>
+                        </div>
+                    {% endfor %}
+                </nav>
+            </div>
+        </div>
+        <div class="col-12 col-md-9">
+            <div class="container m-auto shadow text-center mt-3 rounded p-3 row">
+                {% for product in products %}
+                <div class="col-lg-4 col-12 col-sm-6 ">
+                    <div class="{% if product.discount  %}discount{% endif %} card m-2 shadow rounded-lg p-4 product">
+                        {% if product.discount %}
+                        <div class="bar-discount fw-bolder">
+                            {{ product.discount }}درصد تخفیف
+                        </div>
+                        {% endif %}
+                        <div class="product-img">
+                            {% thumbnail product.image "250x200" crop="center" as img %}
+                            <img class="img-thumbnail card-img" src="{{ img.url }}">
+                            {% endthumbnail %}
+                        </div>
+                        <h4>{{ product.name |name_cut }}</h4>
+                        <div class="product-price text-muted ">
+                            <small>
+                                {{ product | discount_price | intcomma}} تومان
+                            </small>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn btn-outline-primary"> خرید</a>
+                            <a href="{% url 'settings:product-update' product.slug %}" class="btn btn-outline-warning"> تغییر</a>
+                            <a href="{% url 'product:product-detail' product.slug %}" class="btn btn-outline-danger">مشاهده</a>
+                        </div>
+                    </div>
                 </div>
-            {% endif %}
-            <div class="product-img">
-            {% thumbnail product.image "250x200" crop="center" as img %}
-                <img class="img-thumbnail card-img" src="{{ img.url }}">
-            {% endthumbnail %}
+                {% endfor %}
+            </div>
         </div>
-        <h4>{{ product.name |name_cut }}</h4>
-        <div class="product-price text-muted ">
-            <small>
-                {{ product | discount_price | intcomma}} تومان
-            </small>
-        </div>
-        <div class="btn-group">
-            <a class="btn btn-outline-primary"> خرید</a>
-             <a href="{% url 'product:product-detail' product.slug %}" class="btn btn-outline-danger">مشاهده</a>
-        </div>
-        </div>
-        </div>
-    {% endfor %}
     </div>
     <div class="container text-center">
     <div class="btn-group  w-50 m-auto my-3">
