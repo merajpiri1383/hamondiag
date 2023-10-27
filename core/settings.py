@@ -45,9 +45,11 @@ INSTALLED_APPS = [
     'product.apps.ProductConfig',
     'settings.apps.SettingsConfig',
     'blog.apps.BlogConfig',
+    'channel.apps.ChannelConfig',
     # external apps
     'sorl.thumbnail',
     'widget_tweaks',
+    'channels',
 ]
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "product:main"
@@ -68,7 +70,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 ROOT_URLCONF = 'core.urls'
-
+ASGI_APPLICATION = "core.asgi.application"
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

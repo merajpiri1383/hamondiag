@@ -52,7 +52,9 @@
                         </div>
                         <div class="btn-group">
                             <a class="btn btn-outline-primary"> خرید</a>
+                            {% if request.user.is_staff %}
                             <a href="{% url 'settings:product-update' product.slug %}" class="btn btn-outline-warning"> تغییر</a>
+                            {% endif %}
                             <a href="{% url 'product:product-detail' product.slug %}" class="btn btn-outline-danger">مشاهده</a>
                         </div>
                     </div>

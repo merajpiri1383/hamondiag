@@ -18,6 +18,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{% url 'blogs' %}" class="link" data-toggle="tooltip" data-placement="bottom" title="مقالات">
+                        <i class="fa fa-book"></i>
+                    </a>
+                </li>
+                <li>
                     {% if request.user.is_authenticated %}
                         <a href="{% url 'profile' %}" class="link" data-toggle="tooltip" title="پروفایل">
                         <i class="fa fa-user"></i>
@@ -58,6 +63,11 @@
                     <i class="fa fa-shopping-cart"></i>
                 </a>
             </li>
+            <li>
+                <a href="{% url 'blogs' %}" class="link" data-toggle="tooltip" data-placement="bottom" title="مقالات">
+                    <i class="fa fa-book"></i>
+                </a>
+                </li>
             {% if request.user.is_staff %}
                     <li>
                     <a href="{% url 'settings:settings' %}" class="link" data-toggle="tooltip" data-placement="bottom" title="تنظیمات">

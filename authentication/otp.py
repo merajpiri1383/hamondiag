@@ -28,9 +28,11 @@ def send_otp_thread(user):
     sleep(120)
     if user.is_active :
         user.otp = None
+        print("user in de active ")
         user.save()
     else :
         user.delete()
+        print("user is deleted")
 def send_otp(user):
     task = Thread(target=send_otp_thread,args=[user])
     task.start()

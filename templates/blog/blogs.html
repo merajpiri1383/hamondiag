@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block title %}
+    مقالات
+{% endblock %}
+{% block content %}
+    <div class="container row">
+        {% include 'includes/last_blogs.html' with last_blogs=last_blogs %}
+        <div class="col-12 col-md-8">
+            <div class="card my-md-5 my-3">
+                <div class="card-body row">
+                    {% for blog in object_list %}
+                       <div class="col-12 col-md-6">
+                        <div class="card m-1">
+                            <div class="card-body">
+                                {% thumbnail blog.picture "300x250" crop="center" as img %}
+                                <img src="{{ img.url }}" class="card-img">
+                                {% endthumbnail %}
+                                <a href="{% url 'blog' blog.slug %}" class="text-decoration-none">
+                                    <h4 class="bg-danger p-2 rounded-3 text-light text-center my-1 ">{{ blog.name }}</h4>
+                                </a>
+                            </div>
+                        </div>
+                       </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

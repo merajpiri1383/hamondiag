@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block title %}
+{% endblock %}
+{% block content %}
+<div class="container row">
+    {% include 'includes/last_blogs.html' with last_blogs=last_blogs %}
+    <div class="col-12 col-md-8">
+        <div class="card my-md-5 my-3">
+            <div class="card-body">
+                {% thumbnail blog.picture "500x400" crop="center" as img %}
+                <img src="{{ img.url }}" class="img-fluid w-100 rounded">
+                {% endthumbnail %}
+                {% if blog.contents.all %}
+                {% for content in blog.contents.all %}
+                <div class="my-3">
+                    {% if content.content_object.font_size %}
+                    <p class="text-{{ content.content_object.color }} {{ content.content_object.font_size }}">
+                        {{ content.content_object.content }}
+                    </p>
+                    {% if request.user.is_staff %}
+                        <form method="post" action="{% url 'delete-content' blog.slug content.content_object.id  " text" %}">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-outline-danger" value="delete">
+                        </form>
+                    {% endif %}
+                    {% else %}
+                    {% thumbnail content.content_object.content "400x300" crop="center" as img %}
+                    <img src="{{ img.url }}" class="img-thumbnail card-img">
+                    {% endthumbnail %}
+                    {% if request.user.is_staff %}
+                    <form method="post" action="{% url 'delete-content' blog.slug content.content_object.id  " picture" %}">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-outline-danger" value="delete">
+                    </form>
+                    {% endif %}
+                    {% endif %}
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

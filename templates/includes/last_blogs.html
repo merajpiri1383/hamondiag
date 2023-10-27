@@ -1,0 +1,12 @@
+<div class="col-12 col-md-4">
+        <div class="card my-md-5 my-3 sticky-md-top">
+            <h6 class="text-muted p-2">آخرین مقالات</h6>
+            <div class="card-body list-unstyled">
+                {% for blog in last_blogs %}
+                <li class="my-1 text-center border border-danger p-2 rounded">
+                    <a href="{% url 'blog' blog.slug %}" class="fw-bolder text-danger text-decoration-none">{{ blog.name }}</a>
+                </li>
+                {% endfor %}
+            </div>
+        </div>
+    </div>

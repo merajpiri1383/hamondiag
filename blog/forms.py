@@ -7,16 +7,16 @@ class BlogForm(forms.ModelForm):
 class PicturContentForm(forms.ModelForm):
     class Meta :
         model = Picture
-        fields = ["img"]
+        fields = ["content"]
     labels = {
-        "img": "تصویر"
+        "content": "تصویر"
     }
 class TextContentForm(forms.ModelForm):
     class Meta :
         model = Text
-        fields = ["text","color","font_size"]
+        fields = ["content","color","font_size"]
     labels = {
-        "text" : "متن",
+        "content" : "متن",
         "color": "رنگ",
         "font_size":"انداره"
     }
