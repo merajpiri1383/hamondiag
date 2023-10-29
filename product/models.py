@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.core.validators import MaxValueValidator,MinValueValidator
+from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 class Category(models.Model):
     name = models.CharField(max_length=300,unique=True)
@@ -41,3 +42,14 @@ class Product(models.Model):
 class Image(models.Model):
     image = models.ImageField(upload_to="media")
     product = models.ForeignKey(Product,on_delete=models.CASCADE,related_name="images")
+class Cart(models.Model):
+    user = models.ForeignKey(get_user_model(),on_delete=models.CASCADE,related_name="carts")
+    is_paid = models.BooleanField(default=False)
+    is_open = models.BooleanField(default=True)
+    created = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return str(self.user)
+class CartProduct(models.Model):
+    cart = models.ForeignKey(Cart,on_delete=models.CASCADE,related_name="cart_products")
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    count = models.PositiveIntegerField(default=0)

@@ -66,9 +66,6 @@ AUTHENTICATION_BACKENDS = [
     "authentication.backend.AuthBackend",
     "django.contrib.auth.backends.ModelBackend"
 ]
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
 ROOT_URLCONF = 'core.urls'
 ASGI_APPLICATION = "core.asgi.application"
 TEMPLATES = [

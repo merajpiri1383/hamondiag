@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views.generic.base import View
-from product.models import Product,Category
+from product.models import Product,Category,Cart,CartProduct
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.views.generic.detail import DetailView
 class MainView(View):
     def get(self,request):
-        page = request.GET.get("p",1)
+        page = request.GET.get("p",1) 
         category = request.GET.get("c")
         discount = request.GET.get("d")
         products = Product.objects.all().order_by("-created")
@@ -33,3 +33,11 @@ class MainView(View):
 class ProductDetailView(DetailView):
     template_name = "product/product.html"
     model = Product
+class CartView(View):
+    def get(self,request):
+        cart = None
+        try :
+            cart = request.user.carts.get(is_paid=False)
+        except :
+            pass
+        return render(request,"product/cart.html",{"cart":cart})

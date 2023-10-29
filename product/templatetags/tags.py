@@ -18,3 +18,8 @@ def product_title(value):
     if len(value) < 10 :
         return value
     return f"{value[0:10]}..."
+@register.filter(name="product_total")
+def product_total(pack):
+    count = pack.count
+    price = pack.product.price
+    return count * price

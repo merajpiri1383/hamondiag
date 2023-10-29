@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load tags %}
+{% load humanize %}
+{% block title%}
+سبد خرید
+{% endblock %}
+{% block content %}
+<div class="container">
+   <div class="card my-md-5 my-3 ">
+       <table class="table card-body">
+           <thead>
+           <tr>
+               <th class="text-center fw-bolder">محصول</th>
+               <th class="text-center fw-bolder">تعداد</th>
+               <th class="text-center fw-bolder">قیمت</th>
+               <th class="text-center fw-bolder">مجموع</th>
+               <th class="text-center fw-bolder">@</th>
+           </tr>
+           </thead>
+           <tbody>
+           {% for pack in cart.cart_products.all %}
+               <tr id="product-{{pack.product.slug}}">
+               <td role="col" class="text-center">{{ pack.product.name }}</td>
+               <td role="col" class="text-center count-{{ pack.product.slug }}">{{ pack.count }}</td>
+               <td role="col" class="text-center">{{ pack.product.price |intcomma }}</td>
+               <td role="col" class="text-center total-price-{{ pack.product.slug }} ">{{ pack | product_total |intcomma  }}</td>
+               <td role="col" class="text-center">
+                   <div class="btn-group flex-row-reverse">
+                       <button onclick="btnAddCart('{{ pack.product.slug }}','{{ request.user }}')" class="btn btn-outline-danger fw-bolder">+</button>
+                       <button onclick="btnRemoveCart('{{ pack.product.slug }}','{{ request.user }}')" class="btn btn-outline-danger">-</button>
+                    </div>   
+                </td>
+                </tr> 
+           {% endfor %}
+           </tbody>
+       </table>
+       <h4>مجموع کل :  <span id="total_price">0</span></h4>
+   </div>
+</div>
+{% endblock %}

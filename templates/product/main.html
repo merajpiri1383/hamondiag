@@ -51,7 +51,7 @@
                             </small>
                         </div>
                         <div class="btn-group">
-                            <a class="btn btn-outline-primary"> خرید</a>
+                            <a onclick="btnAddCart('{{ product.slug }}','{{ request.user }}')" class="btn btn-outline-primary"> خرید</a>
                             {% if request.user.is_staff %}
                             <a href="{% url 'settings:product-update' product.slug %}" class="btn btn-outline-warning"> تغییر</a>
                             {% endif %}
