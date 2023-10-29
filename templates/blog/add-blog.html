@@ -24,10 +24,15 @@
     <div class="card">
         <nav class="card-body">
             {% for blog in blogs %}
-                <li class="d-flex justify-content-between">
+                <div class="card my-2">
+                <li class="d-flex justify-content-between card-body">
                 <h4 class="fw-bold">{{ blog.name }}</h4>
-                <a href="{% url 'edit-blog' blog.slug %}" class="btn btn-outline-warning">تغییر</a>
+                <div class="btn-group flex-row-reverse">
+                    <a href="{% url 'edit-blog' blog.slug %}" class="btn btn-outline-warning">تغییر</a>
+                    <a href="{% url 'blog-delete' blog.slug %}" class="btn btn-outline-danger">حذف</a>
+                </div>
                 </li>
+                </div>
             {% endfor %}
         </nav>
     </div>

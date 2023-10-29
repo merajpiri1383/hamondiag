@@ -38,18 +38,12 @@ class BlogContent(View):
         form1 = TextContentForm(data=request.POST)
         form2 = PicturContentForm(request.POST,request.FILES)
         if form1.is_valid():
-            obj = form1.save(commit=False)
-            obj.blog_id = Blog.objects.get(slug=slug).id
-            self.model = apps.get_model(app_label="blog",model_name="text")
-            obj.save()
+            obj = form1.save()
             content = Content.objects.create(content_object=obj,blog_id=
                     Blog.objects.get(slug=slug).id)
             return redirect("edit-blog",slug)
         if form2.is_valid():
-            obj = form2.save(commit=False)
-            obj.blog_id = Blog.objects.get(slug=slug).id
-            self.model = apps.get_model(app_label="blog", model_name="picture")
-            obj.save()
+            obj = form2.save()
             content = Content.objects.create(content_object=obj, blog_id=
             Blog.objects.get(slug=slug).id)
             return redirect("edit-blog", slug)
@@ -81,6 +75,13 @@ class BlogDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context["last_blogs"] = Blog.objects.all().order_by("-created")[0:5]
         return context
-class BLogDeleteView(DetailView):
-    template_name = "settigns/add-blog.html"
-    model = Blog
+class BlogDetailView(View):
+    def get(self,request,slug):
+        blog = Blog.objects.get(slug=slug)
+        last_blogs = Blog.objects.all().order_by("-created")[0:5]
+        return render(request,"blog/blog.html",{"blog":blog,"last_blogs":last_blogs})
+class BlogDeleteView(View):
+    def get(self,request,slug):
+        blog = Blog.objects.get(slug=slug)
+        blog.delete()
+        return redirect("add-blog")

@@ -14,16 +14,16 @@ websocket.onerror = ()=> {
 websocket.onmessage = (e)=>{
     data = JSON.parse(e.data)
     let productTotalPrice = $(`.total-price-${data.slug}`);
+    let productCount = $(`.count-${data.slug}`)
     if(data.mode == "add"){
         productCount.text(data.count)
         productTotalPrice.text(data.price * data.count)
     }if(data.mode == "remove"){
-           if(data.count == 0){
-            $("#product-"+data.slug).addClass("hide")
-           }else{
-            productCount.text(data.count)
-           productTotalPrice.text(data.price * data.count)
-           }
+        productCount.text(data.count)
+        productTotalPrice.text(data.price * data.count)
+    }if(data.mode == "delete"){
+        alert(data.mode)
+        $(`#product-${data.slug}`).addClass("hide")
     }
 }
 function btnAddCart(slug,user){

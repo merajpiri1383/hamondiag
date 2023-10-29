@@ -34,11 +34,6 @@ class Content(models.Model):
     content_type = models.ForeignKey(to=ContentType,on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey("content_type","object_id")
-class BaseContent(models.Model):
-    blog = models.ForeignKey(to=Blog, on_delete=models.CASCADE, related_name="childs")
-    created = models.DateTimeField(auto_now_add=True)
-    class Meta :
-        abstract = True
 class Text(models.Model):
     content = models.TextField(null=True,blank=True)
     color = models.CharField(max_length=15,choices=text_colors,default="dark")

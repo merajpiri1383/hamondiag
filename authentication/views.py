@@ -24,7 +24,6 @@ class AuthView(View):
 class VerifyView(View):
     def get(self,request,phone):
         form = forms.VerifyForm()
-        print(phone)
         return render(request,"authentication/verify.html",{"form":form})
     def post(self,request,phone):
         form = forms.VerifyForm(data=request.POST)

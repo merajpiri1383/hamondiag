@@ -15,16 +15,16 @@ class WSConsumer(WebsocketConsumer):
         product = None
         cart = None
         cart_product = None
-        def send_count(cart,product,mode,card_product):
+        def send_count(cart,product,mode,card_product=None):
             count = 0
-            for pack in cart.cart_products.all() :
+            for pack in cart.cart_products.all():
                 count += pack.count
             self.send(json.dumps({
-                "slug" : product.slug,
-                "mode" : mode,
-                "price" : product.price,
-                "count" : card_product.count,
-                "total" : count,
+                "slug": product.slug,
+                "mode": mode,
+                "price": product.price,
+                "count": card_product.count,
+                "total": count,
             }))
         if user != "AnonymousUser":
             print('us')
@@ -54,6 +54,7 @@ class WSConsumer(WebsocketConsumer):
             send_count(cart, product, "add",cart_product)
         if type == "remove-cart":
             if cart_product.count == 1 :
+                send_count(cart, product,"delete",cart_product)
                 cart_product.delete()
             else :
                 cart_product.count -= 1
