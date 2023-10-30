@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin
 from authentication.manager import UserManager
 from django.contrib.auth import get_user_model
 from iranian_cities.fields import OstanField,ShahrField
+from iranian_cities.models import Ostan
 class User(AbstractBaseUser,PermissionsMixin):
     mobile = models.CharField(max_length=11,unique=True)
     otp = models.SlugField(blank=True,null=True)

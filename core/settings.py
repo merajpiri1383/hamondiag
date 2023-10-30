@@ -57,6 +57,7 @@ LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "product:main"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -105,7 +106,6 @@ JALALI_DATE_DEFAULTS = {
 }
 WSGI_APPLICATION = 'core.wsgi.application'
 AUTH_USER_MODEL = "authentication.User"
-STATIC_ROOT = BASE_DIR / "staticfiles"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -115,6 +115,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+STATIC_ROOT = BASE_DIR /"staticfiles"
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
@@ -149,7 +150,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
+import mimetypes
+mimetypes.add_type("text/css",".css",True)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -160,3 +162,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STORAGES = {
+    # ...
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
