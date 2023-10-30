@@ -105,7 +105,7 @@ JALALI_DATE_DEFAULTS = {
 }
 WSGI_APPLICATION = 'core.wsgi.application'
 AUTH_USER_MODEL = "authentication.User"
-
+STATIC_ROOT = BASE_DIR / "staticfiles"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
