@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'widget_tweaks',
     'channels',
+    'iranian_cities',
 ]
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "product:main"

@@ -3,7 +3,9 @@
     src: url("fonts/Vazir.eot") format("eot");
 }.hide-important{
     display: none !important;
-}
+}.display-none{
+    display: none;
+  }
 .hide{
     display: none;
 }.flex-disply{

@@ -9,12 +9,12 @@
 {% block content %}
      <div class="navbar my-4 p-2 border-danger border navbar-md-expand rounded-pill">
     <div class="navbar-nav d-md-flex d-none flex-row-reverse p-3 w-100 btn-group">
-        <a class="nav-item nav-link btn btn-outline-danger">خرید های انجام شده</a>
-        <a class="nav-item nav-link btn btn-outline-danger">اطلاعات پستی</a>
+        <a href="{% url 'last-carts' %}" class="nav-item nav-link btn btn-outline-danger">خرید های انجام شده</a>
+        <a href="{% url 'post-info' %}" class="nav-item nav-link btn btn-outline-danger">اطلاعات پستی</a>
     </div>
     <div class="navbar-nav d-md-none d-flex rounded-pill p-3 w-100">
-        <a class="nav-item nav-link btn rounded-pill my-1 btn-outline-danger d-block">خرید های انجام شده</a>
-        <a class="nav-item nav-link btn rounded-pill my-1 btn-outline-danger d-block">اطلاعات پستی</a>
+        <a href="{% url 'last-carts' %}" class="nav-item nav-link btn rounded-pill my-1 btn-outline-danger d-block">خرید های انجام شده</a>
+        <a href="{% url 'post-info' %}" class="nav-item nav-link btn rounded-pill my-1 btn-outline-danger d-block">اطلاعات پستی</a>
     </div>
     </div>
     <div class="card border border-danger">

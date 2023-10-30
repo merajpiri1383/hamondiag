@@ -48,3 +48,6 @@ function btnRemoveCart(slug,user){
         "icon" :"success",
     })
 };
+function cartOpen(id){
+    $(`.cart-${id}`).toggle(1000);
+}

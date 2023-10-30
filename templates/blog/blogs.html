@@ -9,7 +9,8 @@
         <div class="col-12 col-md-8">
             <div class="card my-md-5 my-3">
                 <div class="card-body row">
-                    {% for blog in object_list %}
+                    {% if blog_list %}
+                        {% for blog in object_list %}
                        <div class="col-12 col-md-6">
                         <div class="card m-1">
                             <div class="card-body">
@@ -23,6 +24,9 @@
                         </div>
                        </div>
                     {% endfor %}
+                        {% else %}
+                        <h2 class="p-5 text-center">هیچ مقاله وجود نداره</h2>
+                    {% endif %}
                 </div>
             </div>
         </div>

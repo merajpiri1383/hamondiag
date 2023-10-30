@@ -7,7 +7,8 @@
 {% block content %}
 <div class="container">
    <div class="card my-md-5 my-3 ">
-       <table class="table card-body">
+      {% if cart.cart_products.all %}
+           <table class="table card-body">
            <thead>
            <tr>
                <th class="text-center fw-bolder">محصول</th>
@@ -28,13 +29,16 @@
                    <div class="btn-group flex-row-reverse">
                        <button onclick="btnAddCart('{{ pack.product.slug }}','{{ request.user }}')" class="btn btn-outline-danger fw-bolder">+</button>
                        <button onclick="btnRemoveCart('{{ pack.product.slug }}','{{ request.user }}')" class="btn btn-outline-danger">-</button>
-                    </div>   
+                    </div>
                 </td>
-                </tr> 
+                </tr>
            {% endfor %}
            </tbody>
        </table>
        <h4>مجموع کل :  <span id="total_price">0</span></h4>
+          {% else %}
+          <h2 class="p-5 text-center ">سبد خرید شما خالی می باشد</h2>
+      {% endif %}
    </div>
 </div>
 {% endblock %}

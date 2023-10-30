@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse_lazy
-from django.views.generic.base import View
+from django.views.generic.base import View,TemplateResponseMixin
 from django.contrib.auth import get_user_model,login,authenticate,logout
 from authentication import otp
 from authentication import forms
@@ -45,3 +45,29 @@ class ProfileView(View):
 def logout_view(request):
     logout(request)
     return redirect("product:main")
+class PostInfoView(TemplateResponseMixin,View):
+    template_name = "authentication/post_info.html"
+    postinfo = None
+    def dispatch(self,request):
+        self.postinfo = request.user.post
+        return super().dispatch(request)
+    def get(self,request):
+        form = forms.PostInfoForm(instance=self.postinfo)
+        return self.render_to_response({
+            "form" : form
+        })
+    def post(self,request):
+        form = forms.PostInfoForm(data=request.POST,instance=self.postinfo)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.user = request.user
+            obj.is_ok = True
+            obj.save()
+            return redirect("product:cart")
+        return self.render_to_response({
+            "form":form
+        })
+class LastCartsView(View):
+    def get(self,request):
+        carts = request.user.carts.all().filter(is_paid=True,is_open=False)
+        return render(request,"authentication/last_carts.html",{"carts":carts})
