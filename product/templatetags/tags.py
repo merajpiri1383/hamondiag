@@ -1,5 +1,6 @@
 from django.template import Library
 from product.models import Product
+from jalali_date.templatetags.jalali_tags import to_jalali
 register = Library()
 @register.filter(name="name_cut")
 def product_name(value):
@@ -23,3 +24,6 @@ def product_total(pack):
     count = pack.count
     price = pack.product.price
     return count * price
+@register.filter(name="date")
+def product_total(time):
+    return to_jalali(time,strftime='%H:%M:%S | %Y/%m/%d ')

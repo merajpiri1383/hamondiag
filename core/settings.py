@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'channels',
     'iranian_cities',
+    'jalali_date',
 ]
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "product:main"
@@ -86,7 +87,22 @@ TEMPLATES = [
         },
     },
 ]
-
+JALALI_DATE_DEFAULTS = {
+   'Strftime': {
+        'date': '%y/%m/%d',
+        'datetime': '%H:%M:%S _ %y/%m/%d',
+    },
+    'Static': {
+        'js': [
+            'admin/js/django_jalali.min.js',
+        ],
+        'css': {
+            'all': [
+                'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css',
+            ]
+        }
+    },
+}
 WSGI_APPLICATION = 'core.wsgi.application'
 AUTH_USER_MODEL = "authentication.User"
 
