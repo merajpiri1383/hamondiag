@@ -121,8 +121,7 @@ STATICFILES_DIRS = [
 ]
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
-# Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
+
 KAVENEGAR_API_KEY = "562F6843774C59744C796C4A6F79612B4A3657684778567852494F416B574F61654F376C314737707236453D"
 AUTH_PASSWORD_VALIDATORS = [
     {

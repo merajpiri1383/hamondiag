@@ -1,7 +1,7 @@
 let websocket ;
 const totalPrice = $("#total_price");
 const startWebSocket = ()=>{
-    websocket = new WebSocket(`ws://${window.location.host}/ws/cart/`);
+    websocket = new WebSocket(`wss://${window.location.host}/ws/cart/`);
 }
 startWebSocket();
 websocket.onerror = ()=> {
