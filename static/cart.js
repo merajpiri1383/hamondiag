@@ -1,7 +1,11 @@
 let websocket ;
 const totalPrice = $("#total_price");
 const startWebSocket = ()=>{
-    websocket = new WebSocket(`wss://${window.location.host}/ws/cart/`);
+    if(window.location.protocol == "http"){
+        websocket = new WebSocket(`ws://${window.location.host}/ws/cart/`);
+    }else{
+        websocket = new WebSocket(`wss://${window.location.host}/ws/cart/`);
+    }
 }
 startWebSocket();
 websocket.onerror = ()=> {

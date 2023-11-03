@@ -8,14 +8,25 @@
     <link type="text/css" rel="stylesheet" href="{% static 'authentication/css/auth.css' %}">
 {% endblock %}
 {% block content %}
-    <div class="container m-5">
+    <div class="container my-md-5 my-3">
     <form method="post" class="card shadow-lg m-5 p-5">
         {% csrf_token %}
-        <h2 class="text-center my-3">کد تایید</h2>
+        <h2 class="text-center my-3 fw-bolder">کد تایید</h2>
         {% for field in form %}
-            {% render_field field class="form-control-lg rounded-pill form-control m-3" %}
+            <div class="my-2">
+             {% render_field field type="number" class="form-control rounded-pill form-control-lg" %}
+            {% if field.errors %}
+                <div>
+                {% for error in field.errors %}
+                    <p class="fw-bold text-danger">{{ error }}</p>
+                {% endfor %}
+                </div>
+            {% endif %}
+            </div>
         {% endfor %}
-    <button class="btn btn-outline-danger btn-lg rounded-pill" type="submit">ورود</button>
+    <div class="">
+        <button class="btn btn-outline-danger form-control rounded-pill btn-lg" type="submit">ورود</button>
+    </div>
     </form>
     </div>
 {% endblock %}

@@ -9,12 +9,12 @@
     <div class="container my-4">
         <div class="card w-75 m-auto p-3">
             <div class="row">
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-8">
                     {% thumbnail product.image "300x200" crop="center" as img %}
-                    <img src="{{ img.url }}" class="card-img">
+                    <img src="{{ img.url }}" class="img-responsive w-100 rounded-3">
                     {% endthumbnail %}
                 </div>
-                <div class="card-body col-12 col-md-8">
+                <div class="card-body col-12 col-md-4">
                     <h4 class="text-danger fw-bolder">{{product.name}}</h4>
                     <h4 class="text-danger">{{ product | discount_price | intcomma}} تومان 
                         {% if product.discount %}

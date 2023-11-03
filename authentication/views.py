@@ -13,12 +13,15 @@ class AuthView(View):
         form = forms.AuthForm(data=request.POST)
         if form.is_valid():
             mobile = form.cleaned_data.get("mobile")
-            user , created = get_user_model().objects.get_or_create(mobile=mobile)
-            otp_code = randint(1000,9999)
-            user.otp = otp_code
+            try :
+                user = get_user_model().objects.get(mobile=mobile)
+            except :
+                user = get_user_model().objects.create(mobile=mobile)
+            otp = randint(1000,9999)
+            user.otp = otp
             user.save()
-            otp.send_otp(user=user)
-            print(otp_code)
+            print(otp)
+            # send code to user
             return redirect("verify",mobile)
         return render(request, "authentication/auth.html",{"form":form})
 class VerifyView(View):
@@ -28,16 +31,13 @@ class VerifyView(View):
     def post(self,request,phone):
         form = forms.VerifyForm(data=request.POST)
         if form.is_valid():
-            try :
-                x = authenticate(request, mobile=phone, otp=
-                form.cleaned_data.get("verify_code"))
-                if x:
-                    login(request,x)
-                    return redirect("product:main")
-                else :
-                    form.add_error("verify_code", "کد تایید نامعتبر می باشد ")
-            except :
-                form.add_error("verify_code","کد تایید نامعتبر می باشد ")
+            user = authenticate(mobile=phone,otp=form.cleaned_data.get("verify_code"))
+            print(user)
+            if user :
+                login(request,user)
+                return redirect("product:main")
+            else :
+                form.add_error("verify_code", "کد نامعتبر می باشد")
         return render(request,"authentication/verify.html",{"form":form})
 class ProfileView(View):
     def get(self,request):

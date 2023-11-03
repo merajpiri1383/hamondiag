@@ -11,9 +11,18 @@
     <div class="m-auto m-5 w-100">
     <form method="post" class="card shadow-lg my-5 py-5 px-2">
         {% csrf_token %}
-        <h2 class="text-center my-3">ورود | ثبت نام</h2>
+        <h2 class="text-center my-3 fw-bolder">ورود | ثبت نام</h2>
         {% for field in form %}
             {% render_field field class="rounded-pill form-control form-control-lg my-3" %}
+            {% if field.errors %}
+                <div>
+                {% for error in field.errors %}
+                    {% if forloop.first %}
+                        <p class="text-danger">{{ error }}</p>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            {% endif %}
         {% endfor %}
     <button class="btn btn-outline-danger btn-lg rounded-pill" type="submit">ورود</button>
     </form>

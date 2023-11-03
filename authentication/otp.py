@@ -6,12 +6,6 @@ from random import randint
 from kavenegar import *
 from django.conf import settings
 api = KavenegarAPI(settings.KAVENEGAR_API_KEY)
-def is_otp_expired(user):
-    now = datetime.datetime.now(datetime.timezone.utc)
-    otp_time = user.otp_created
-    if (now-otp_time).seconds > 120 :
-        return True
-    return False
 def send_otp_thread(user):
     # send otp to user
     try :
@@ -28,11 +22,7 @@ def send_otp_thread(user):
     sleep(120)
     if user.is_active :
         user.otp = None
-        print("user in de active ")
         user.save()
-    else :
-        user.delete()
-        print("user is deleted")
 def send_otp(user):
     task = Thread(target=send_otp_thread,args=[user])
     task.start()

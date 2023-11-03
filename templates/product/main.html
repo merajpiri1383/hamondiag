@@ -33,17 +33,15 @@
             <div class="container m-auto shadow text-center mt-3 rounded p-3 row">
                 {% for product in products %}
                 <div class="col-lg-4 col-12 col-sm-6 ">
-                    <div class="{% if product.discount  %}discount{% endif %} card m-2 shadow rounded-lg p-4 product">
+                    <div class="{% if product.discount  %}discount{% endif %} card m-2 shadow rounded-3 p-2 product">
                         {% if product.discount %}
                         <div class="bar-discount fw-bolder">
                             {{ product.discount }}درصد تخفیف
                         </div>
                         {% endif %}
-                        <div class="product-img">
-                            {% thumbnail product.image "250x200" crop="center" as img %}
-                            <img class="img-thumbnail card-img" src="{{ img.url }}">
+                        {% thumbnail product.image "250x200" crop="center" as img %}
+                            <img class="img-responsive w-100 rounded-3" src="{{ img.url }}">
                             {% endthumbnail %}
-                        </div>
                         <h4>{{ product.name |name_cut }}</h4>
                         <div class="product-price text-muted ">
                             <small>
@@ -66,11 +64,11 @@
     <div class="container text-center">
     <div class="btn-group  w-50 m-auto my-3">
         {% if products.has_previous %}
-        <a class="btn btn-outline-danger" href="?p={{ products.previous_page_number }}">previous</a>
+        <a class="btn btn-outline-danger" href="?p={{ products.previous_page_number }}">قبلی</a>
     {% endif %}
     <a class="btn btn-outline-danger" href="?p={{ products.number }}">{{ products.number }}</a>
     {% if products.has_next %}
-        <a class="btn btn-outline-danger" href="?p={{ products.next_page_number }}">next</a>
+        <a class="btn btn-outline-danger" href="?p={{ products.next_page_number }}">بعدی</a>
     {% endif %}
     </div>
     </div>

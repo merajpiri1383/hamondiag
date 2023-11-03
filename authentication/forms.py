@@ -12,6 +12,10 @@ class AuthForm(forms.ModelForm):
         }
     def clean(self):
         mobile = self.cleaned_data.get("mobile")
+        if len(str(mobile)) < 11:
+            self.add_error("mobile","شماره موبایل وارد شده معتبر نمی باشد")
+    def clean(self):
+        mobile = self.cleaned_data.get("mobile")
         if len(str(mobile)) <11:
             self.add_error("mobile","شماره معتبر نمی باشد")
         if not str(mobile).startswith("09"):
@@ -22,7 +26,7 @@ class VerifyForm(forms.Form):
     }))
     def clean(self):
         code = str(self.cleaned_data.get("verify_code"))
-        if len(code) > 4 and len(code) < 4 :
+        if len(code) > 4 or len(code) < 4 :
             self.add_error("verify_code","کد نامعتبر می باشد ")
 class PostInfoForm(forms.ModelForm):
     class Meta :

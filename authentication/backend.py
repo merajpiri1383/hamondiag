@@ -4,9 +4,10 @@ class AuthBackend(ModelBackend):
     def authenticate(self,request,mobile,otp,**kwargs):
         try :
             user = get_user_model().objects.get(mobile=mobile)
+            print(otp)
             if int(user.otp) == otp :
+                print("true")
                 user.is_active = True
-                print("user in here")
                 user.save()
                 return user
             return None
