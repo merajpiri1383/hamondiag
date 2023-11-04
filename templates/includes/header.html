@@ -46,9 +46,15 @@
             <img id="brand-section" src="{% static 'images/final.svg' %}">
         </section>
         <section id="user-icon-section-mobile" class="hide flex-disply">
-            <a href="{% url 'login' %}">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'profile' %}">
+                <i class="fa fa-user"></i>
+                </a>
+                {% else %}
+                <a href="{% url 'login' %}">
                 <i class="fa fa-user"></i>
             </a>
+            {% endif %}
         </section>
     </div>
     <section id="link-section-mobile" class="hide">

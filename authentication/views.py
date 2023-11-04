@@ -17,11 +17,10 @@ class AuthView(View):
                 user = get_user_model().objects.get(mobile=mobile)
             except :
                 user = get_user_model().objects.create(mobile=mobile)
-            otp = randint(1000,9999)
-            user.otp = otp
+            otp_code = randint(1000,9999)
+            user.otp = otp_code
             user.save()
-            print(otp)
-            # send code to user
+            otp.send_otp(user)
             return redirect("verify",mobile)
         return render(request, "authentication/auth.html",{"form":form})
 class VerifyView(View):
@@ -49,7 +48,10 @@ class PostInfoView(TemplateResponseMixin,View):
     template_name = "authentication/post_info.html"
     postinfo = None
     def dispatch(self,request):
-        self.postinfo = request.user.post
+        try:
+            self.postinfo = request.user.post
+        except:
+            pass
         return super().dispatch(request)
     def get(self,request):
         form = forms.PostInfoForm(instance=self.postinfo)

@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'channels',
     'iranian_cities',
     'jalali_date',
+    'whitenoise',
 ]
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "product:main"

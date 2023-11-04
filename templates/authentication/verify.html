@@ -8,8 +8,8 @@
     <link type="text/css" rel="stylesheet" href="{% static 'authentication/css/auth.css' %}">
 {% endblock %}
 {% block content %}
-    <div class="container my-md-5 my-3">
-    <form method="post" class="card shadow-lg m-5 p-5">
+    <div class="m-auto w-100 my-md-5 my-3">
+    <form method="post" class="card shadow-lg p-3">
         {% csrf_token %}
         <h2 class="text-center my-3 fw-bolder">کد تایید</h2>
         {% for field in form %}
