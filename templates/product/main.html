@@ -11,10 +11,18 @@
 {% endblock %}
 {% block content %}
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 w-100">
             <div class="card my-3 shadow sticky-md-top">
                <button id="btn-category" class="hide btn btn-outline-secondary">دسته بندی ها</button>
-                <nav class="card-body">
+                <nav class="card-body p-0 my-1">
+                    <nav class="row  list-unstyled list-group m-1 list-group-horizontal justify-content-center" id="categorys">
+                        <a href="?d=true" class="text-decoration-none col-md-2 btn-outline-secondary my-1 text-center btn col-12">تخفیف ها</a>
+                    {% for category in categorys %}
+                        <a href="?c={{ category.slug }}" class="text-decoration-none m-1 col-12 col-md-2 text-center btn btn-outline-secondary">{{ category.name }}</a>
+                    {% endfor %}
+                    </nav>
+                </nav>
+                <nav class="card-body hide" id="categorys-mobile">
                     <nav class="row  list-unstyled list-group m-1 list-group-horizontal justify-content-center" id="categorys">
                         <a href="?d=true" class="text-decoration-none col-md-2 btn-outline-secondary my-1 text-center btn col-12">تخفیف ها</a>
                     {% for category in categorys %}

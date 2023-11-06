@@ -52,13 +52,13 @@ INSTALLED_APPS = [
     'channels',
     'iranian_cities',
     'jalali_date',
-    'whitenoise',
+    # 'whitenoise',
 ]
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "product:main"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -116,7 +116,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-STATIC_ROOT = BASE_DIR /"staticfiles"
+# STATIC_ROOT = BASE_DIR /"staticfiles"
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
@@ -162,4 +162,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
