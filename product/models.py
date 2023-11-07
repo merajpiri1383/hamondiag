@@ -28,7 +28,9 @@ class Product(models.Model):
     is_exist = models.BooleanField(default=True)
     image = models.ImageField(upload_to="media")
     created = models.DateTimeField(auto_now_add=True)
+    description = models.TextField()
     updated = models.DateTimeField(auto_now=True)
+    count_buy = models.PositiveIntegerField(default=0)
     discount = models.IntegerField(validators=[
         MinValueValidator(0),MaxValueValidator(100)
     ],null=True,blank=True)

@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
+{#    <title>{% block title %}{% endblock %}</title>#}
     {% include 'includes/links.html' %}
+    <title>216454</title>
     {% block link %}{% endblock %}
 </head>
 <body class="body">
@@ -12,7 +13,7 @@
 <div class="text-center my-5" id="spinner">
     <div class="spinner-border p-5 text-danger"></div>
 </div>
-<div class="container hide" id="content">
+<div class="container-fluid hide" id="content">
     {% block content %}{% endblock %}
 </div>
 {% include 'includes/footer.html' %}

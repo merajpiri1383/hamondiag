@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-{% block title %}
-    تنظیمات
-{% endblock %}
+{#{% block title %}#}
+{#    تنظیمات#}
+{#{% endblock %}#}
 {% block content %}
     <div class="container">
      <div class="navbar  my-4 p-4 border border-danger rounded-pill navbar-md-expand">
@@ -11,6 +11,7 @@
     </div>
     <div class="navbar-nav d-md-flex d-none flex-row-reverse p-2 rounded-pill w-100 btn-group">
         <a href="{% url 'add-blog' %}" class="nav-item nav-link btn btn-outline-danger">مقالات</a>
+        <a href="{% url 'settings:total' %}" class="nav-item nav-link btn btn-outline-danger">تنظیمات کلی</a>
         <a href="{% url 'settings:add-tag' %}" class="nav-item nav-link btn btn-outline-danger">افزودن تگ</a>
     </div>
     <div class="navbar-nav d-md-none d-flex rounded-pill p-5 w-100">
@@ -18,6 +19,7 @@
         <a href="{% url 'settings:add-tag' %}" class="nav-item nav-link btn rounded-pill my-1 btn-outline-danger d-block">افزودن تگ</a>
         <a href="{% url 'settings:add-category' %}" class="nav-item nav-link btn rounded-pill my-1 btn-outline-danger d-block">افزودن دسته بندی</a>
         <a href="{% url 'add-blog' %}" class="nav-item nav-link btn rounded-pill my-1 btn-outline-danger d-block">مقالات</a>
+        <a href="{% url 'settings:total' %}" class="nav-item nav-link btn rounded-pill my-1 btn-outline-danger d-block">تنظیمات کلی</a>
     </div>
     </div>
     </div>

@@ -1,20 +1,47 @@
-<footer class="m-0 mt-5 bg-dark row p-3">
-    <div class="col-md-4 col-12">
+<footer class="m-0 mt-5 p-3 bg-dark row">
+    {% if settings.email %}
+        <div class="col-md-4 col-12">
         <h3 class="text-light  w-50 fw-bolder border-bottom">ارتباط با ما</h3>
-        <p class="text-light">
-            <i class="fa fa-phone"></i>
-            09151964073
-        </p>
-        <p class="text-light">
+        {% if settings.phone %}
+            <p class="text-light fw-bold">
+                <i class="fa fa-phone"></i>
+                {{ settings.phone }}
+            </p>
+        {% endif %}
+        {% if settings.email %}
+        <p class="text-light fw-bold">
             <i class="fa fa-message"></i>
-            hoseinpoudineh4073@gmail.com
+            {{ settings.email }}
         </p>
+        {% endif %}
     </div>
+    {% endif %}
+    {% if settings.about %}
+        <div class="col-md-4 col-12">
+        <h3 class="text-light  w-75 fw-bolder border-bottom">درباره ما</h3>
+        {% if settings.about %}
+            <p class="text-light fw-bold">
+                {{ settings.about }}
+            </p>
+        {% endif %}
+        {% if settings.address %}
+        <p class="text-light fw-bold">
+            <i class="fa fa-address"></i>
+            {{ settings.address }}
+        </p>
+        {% endif %}
+    </div>
+    {% endif %}
     <div class="col-md-4 col-12">
-        <h3 class="text-light w-50 fw-bolder border-bottom">copyright</h3>
-        <p class="text-light">
-            <i class="fa fa-copyright"></i>
-            hamondiag.ir
-        </p>
+        <h3 class="text-light  w-50 fw-bolder border-bottom">اخرین مقالات</h3>
+        <nav class="row">
+            {% for blog in last_blogs %}
+                <a href="{% url 'blog' blog.slug %}" class="col-12 text-light text-decoration-none fw-bold">{{ blog }}</a>
+            {% endfor %}
+        </nav>
     </div>
+        <p class="text-light col-12 text-center fw-bolder">
+            <i class="fa fa-copyright"></i>
+            کلیه حقوق مادی و معنوی این سایت متعلق به هامون دیاگ می باشد
+        </p>
 </footer>

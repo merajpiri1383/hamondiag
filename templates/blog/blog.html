@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
-{% block title %}
-    {{ blog.name }}
-{% endblock %}
+{#{% block title %}#}
+{#    {{ blog.name }}#}
+{#{% endblock %}#}
 {% block content %}
-<div class="container row">
+<div class="row">
     {% include 'includes/last_blogs.html' with last_blogs=last_blogs %}
     <div class="col-12 col-md-8">
         <div class="card my-md-5 my-3">

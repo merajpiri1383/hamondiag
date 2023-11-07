@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+    <div class="card my-md-5 my-3 container">
+    <div class="card-body">
+        <form  method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="row p-3 ">
+                <label class="col-12 muted h4 fw-bold">{{ field.label }}</label>
+                {% if not forloop.last %}
+                {% render_field field class="form-control" %}
+                    {% else %}
+                    {% render_field field %}
+                {% endif %}
+                </div>
+            {% endfor %}
+        <button type="submit" class="btn btn-outline-danger w-100">ذخیره</button>
+        </form>
+    </div>
+    </div>
+{% endblock %}

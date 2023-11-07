@@ -45,20 +45,18 @@ INSTALLED_APPS = [
     'product.apps.ProductConfig',
     'settings.apps.SettingsConfig',
     'blog.apps.BlogConfig',
-    'channel.apps.ChannelConfig',
     # external apps
     'sorl.thumbnail',
     'widget_tweaks',
-    'channels',
     'iranian_cities',
     'jalali_date',
-    # 'whitenoise',
+    'whitenoise',
 ]
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "product:main"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -71,7 +69,6 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend"
 ]
 ROOT_URLCONF = 'core.urls'
-ASGI_APPLICATION = "core.asgi.application"
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -85,6 +82,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'product.context_processor.last_blogs',
+                'settings.context_processor.setting',
             ],
         },
     },
@@ -116,7 +115,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-# STATIC_ROOT = BASE_DIR /"staticfiles"
+STATIC_ROOT = BASE_DIR /"staticfiles"
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
@@ -162,4 +161,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

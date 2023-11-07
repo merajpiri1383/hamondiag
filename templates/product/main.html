@@ -3,9 +3,9 @@
 {% load tags %}
 {% load humanize %}
 {% load thumbnail %}
-{% block title %}
-    هامون دیاگ
-{% endblock %}
+{#{% block title %}#}
+{#    هامون دیاگ#}
+{#{% endblock %}#}
 {% block link %}
     <link rel="stylesheet" href="{% static 'product/products.css' %}">
 {% endblock %}
@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="col-12">
-            <div class="container m-auto shadow text-center mt-3 rounded p-3 row">
+            <div class="m-auto shadow text-center mt-3 rounded p-3 row">
                 {% for product in products %}
                 <div class="col-lg-4 col-12 col-sm-6 ">
                     <div class="{% if product.discount  %}discount{% endif %} card m-2 shadow rounded-3 p-2 product">
