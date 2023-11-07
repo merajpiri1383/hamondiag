@@ -30,7 +30,7 @@ class SettingsView(View):
 class UpdateProduct(BaseView,UpdateView):
     template_name = "settings/product.html"
     model = Product
-    fields = ["name","price","discount","image","category","tags"]
+    fields = ["name","price","discount","image","description","category","tags"]
     success_url = reverse_lazy("product:main")
 class DeleteCategory(DeleteView):
     template_name = "product/main.html"

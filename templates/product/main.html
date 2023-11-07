@@ -11,6 +11,11 @@
 {% endblock %}
 {% block content %}
     <div class="row">
+       {% if settings.poster %}
+           <div class="col-12 w-100 my-md-4 my-3 text-center">
+           <img src="{{ settings.poster.url }}" class="img-fluid rounded-3">
+           </div>
+       {% endif %}
         <div class="col-12 w-100">
             <div class="card my-3 shadow sticky-md-top">
                <button id="btn-category" class="hide btn btn-outline-secondary">دسته بندی ها</button>
@@ -48,7 +53,11 @@
                         <h4>{{ product.name |name_cut }}</h4>
                         <div class="product-price text-muted ">
                             <small>
-                                {{ product | discount_price | intcomma}} تومان
+                                {% if product.price %}
+                                    {{ product | discount_price | intcomma}} تومان
+                                    {% else %}
+                                    جهت خرید لطفا تماس بگیرید
+                                {% endif %}
                             </small>
                         </div>
                         <div class="btn-group">
@@ -62,6 +71,44 @@
                 </div>
                 {% endfor %}
             </div>
+        </div>
+        <div class="col-12">
+            {% if most_sells %}
+                <div class="m-auto shadow text-center mt-3 rounded p-3 row">
+                <h1 class="text-danger fw-bold ">پرفروش ترین </h1>
+                {% for product in most_sells %}
+                <div class="col-lg-4 col-12 col-sm-6 ">
+                    <div class="{% if product.discount  %}discount{% endif %} card m-2 shadow rounded-3 p-2 product">
+                        {% if product.discount %}
+                        <div class="bar-discount fw-bolder">
+                            {{ product.discount }}درصد تخفیف
+                        </div>
+                        {% endif %}
+                        {% thumbnail product.image "250x200" crop="center" as img %}
+                            <img class="img-responsive w-100 rounded-3" src="{{ img.url }}">
+                            {% endthumbnail %}
+                        <h4>{{ product.name |name_cut }}</h4>
+                        <div class="product-price text-muted ">
+                            <small>
+                                {% if product.price %}
+                                    {{ product | discount_price | intcomma}} تومان
+                                    {% else %}
+                                    جهت خرید لطفا تماس بگیرید
+                                {% endif %}
+                            </small>
+                        </div>
+                        <div class="btn-group">
+                            <a onclick="btnAddCart('{{ product.slug }}','{{ request.user }}')" class="btn btn-outline-primary"> خرید</a>
+                            {% if request.user.is_staff %}
+                            <a href="{% url 'settings:product-update' product.slug %}" class="btn btn-outline-warning"> تغییر</a>
+                            {% endif %}
+                            <a href="{% url 'product:product-detail' product.slug %}" class="btn btn-outline-danger">مشاهده</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
         </div>
     </div>
     <div class="container text-center">

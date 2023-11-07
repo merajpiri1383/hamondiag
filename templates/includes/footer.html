@@ -32,7 +32,8 @@
         {% endif %}
     </div>
     {% endif %}
-    <div class="col-md-4 col-12">
+    {% if last_blogs %}
+        <div class="col-md-4 col-12">
         <h3 class="text-light  w-50 fw-bolder border-bottom">اخرین مقالات</h3>
         <nav class="row">
             {% for blog in last_blogs %}
@@ -40,6 +41,7 @@
             {% endfor %}
         </nav>
     </div>
+    {% endif %}
         <p class="text-light col-12 text-center fw-bolder">
             <i class="fa fa-copyright"></i>
             کلیه حقوق مادی و معنوی این سایت متعلق به هامون دیاگ می باشد

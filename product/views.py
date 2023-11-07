@@ -28,11 +28,25 @@ class MainView(View):
         context = {
             "products" : products,
             "categorys" : Category.objects.all(),
+            "most_sells" : Product.objects.all().order_by("count_buy")[0:6]
         }
         return render(request,"product/main.html",context)
 class ProductDetailView(DetailView):
     template_name = "product/product.html"
     model = Product
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        tags = self.object.tags.all()
+        similar_products = []
+        for tag in tags :
+            products = Product.objects.filter(tags__slug=tag.slug).exclude(
+                slug = self.object.slug
+            )[0:3]
+            for product in products:
+                if not product in similar_products :
+                    similar_products.append(product)
+        context["similar_products"] = similar_products
+        return context
 class CartView(View):
     def get(self,request):
         cart = None
