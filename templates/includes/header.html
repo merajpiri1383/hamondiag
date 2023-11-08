@@ -12,10 +12,13 @@
                         <i class="fa fa-home"></i>
                     </a>
                 </li>
-                <li>
+                <li class="position-relative">
                     <a href="{% url 'product:cart' %}" class="link" data-toggle="tooltip" data-placement="bottom" title="سبد خرید">
                         <i class="fa fa-shopping-cart"></i>
                     </a>
+                    {% if total_products > 0 %}
+                        <span class="bg-primary text-light fw-bolder position-absolute top-0 btn p-0 px-3 rounded-pill end-0">{{ total_products }}</span>
+                    {% endif %}
                 </li>
                 <li>
                     <a href="{% url 'blogs' %}" class="link" data-toggle="tooltip" data-placement="bottom" title="مقالات">

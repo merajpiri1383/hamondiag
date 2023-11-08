@@ -84,6 +84,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'product.context_processor.last_blogs',
                 'settings.context_processor.setting',
+                'product.context_processor.total_products',
             ],
         },
     },

@@ -12,7 +12,7 @@ def discount_price(product:Product):
     price = None
     if product.discount :
         price = product.price * (100 - product.discount) / 100
-        return price
+        return str(price)[0:-2]
     return product.price
 @register.filter(name="name_title")
 def product_title(value):
@@ -23,6 +23,9 @@ def product_title(value):
 def product_total(pack):
     count = pack.count
     price = pack.product.price
+    if pack.product.discount :
+        price = (100 - pack.product.discount) /100 * price
+        return str(count * price)[0:-2]
     return count * price
 @register.filter(name="date")
 def product_total(time):

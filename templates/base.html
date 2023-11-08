@@ -10,6 +10,15 @@
 </head>
 <body class="body">
 {% include 'includes/header.html' %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="d-flex justify-content-between alert alert-{{ message.tags }} mt-3 container" role="alert">
+        <div><i class="fa fa-warning"></i>
+        {{ message }}</div>
+        <button class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endfor %}
+{% endif %}
 <div class="text-center my-5" id="spinner">
     <div class="spinner-border p-5 text-danger"></div>
 </div>

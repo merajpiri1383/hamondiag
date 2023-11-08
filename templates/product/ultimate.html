@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 {% load tags %}
 {% load humanize %}
-{#{% block title%}#}
-{#سبد خرید#}
-{#{% endblock %}#}
 {% block content %}
-<div class="container">
-   <div class="card my-md-5 my-3 ">
-      {% if cart.cart_products.all %}
+    <div class="container">
+    <div class="card my-3">
+        <div class="card-body">
+            <div>
+                <h5>نام و نام خانوادگی : {{ postinfo.name }}</h5><hr>
+                <h5>شماره : {{ postinfo.mobile }}</h5><hr>
+                <h5>شماره ضروری : {{ postinfo.mobile_2 }}</h5><hr>
+                <h5>  استان : {{ postinfo.state }} </h5><hr>
+                <h5>شهر : {{ postinfo.city }} </h5><hr>
+                <h5>  کد پستی : {{ postinfo.code_post }}</h5><hr>
+                <h5>آدرس : {{ postinfo.address }}</h5>
+            </div>
+        </div>
+    </div>
+    <div class="card my-md-5 my-3 ">
            <table class="table card-body">
            <thead>
            <tr>
@@ -15,7 +24,6 @@
                <th class="text-center fw-bolder">تعداد</th>
                <th class="text-center fw-bolder">قیمت</th>
                <th class="text-center fw-bolder">مجموع</th>
-               <th class="text-center fw-bolder">@</th>
            </tr>
            </thead>
            <tbody>
@@ -25,20 +33,11 @@
                <td role="col" class="text-center count-{{ pack.product.slug }}">{{ pack.count }}</td>
                <td role="col" class="text-center">{{ pack.product |discount_price |intcomma }}</td>
                <td role="col" class="text-center total-price-{{ pack.product.slug }} ">{{ pack | product_total |intcomma  }}</td>
-               <td role="col" class="text-center">
-                   <div class="btn-group flex-row-reverse">
-                       <a href="{% url 'product:product' pack.product.slug 'add' %}" class="btn btn-outline-danger fw-bolder">+</a>
-                       <a href="{% url 'product:product' pack.product.slug 'remove' %}" class="btn btn-outline-danger">-</a>
-                    </div>
-                </td>
                 </tr>
            {% endfor %}
            </tbody></table>
           <h4 class="fw-bold">مجموع کل :  {{ total |intcomma }} تومان</h4>
-          <a href="{% url 'product:complete-cart' %}" class="btn btn-primary fw-bold">تکمیل خرید</a>
-      {% else %}
-          <h2 class="p-5 text-center">سبد خرید شما خالی می باشد</h2>
-      {% endif %}
+          <a href="{% url 'product:complete-cart' %}" class="btn btn-primary fw-bold">پرداخت</a>
    </div>
 </div>
 {% endblock %}
