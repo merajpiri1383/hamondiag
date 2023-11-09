@@ -8,32 +8,52 @@
 <div class="container">
    <div class="card my-md-5 my-3 ">
       {% if cart.cart_products.all %}
-           <table class="table card-body">
+           <div class="card-body">
+           <table class="table p-3" >
            <thead>
-           <tr>
-               <th class="text-center fw-bolder">محصول</th>
-               <th class="text-center fw-bolder">تعداد</th>
-               <th class="text-center fw-bolder">قیمت</th>
-               <th class="text-center fw-bolder">مجموع</th>
-               <th class="text-center fw-bolder">@</th>
+           <tr class="row">
+               <th class="text-center fw-bolder small col">
+                   <small>محصول</small>
+               </th>
+               <th class="text-center fw-bolder small col">
+                   <small>تعداد</small>
+               </th>
+               <th class="text-center fw-bolder small col">
+                   <small>قیمت</small>
+               </th>
+               <th class="text-center fw-bolder small col">
+                   <small>مجموع</small>
+               </th>
+               <th class="text-center fw-bolder small col">
+                   <small>@</small>
+               </th>
            </tr>
            </thead>
            <tbody>
            {% for pack in cart.cart_products.all %}
-               <tr id="product-{{pack.product.slug}}">
-               <td role="col" class="text-center">{{ pack.product.name }}</td>
-               <td role="col" class="text-center count-{{ pack.product.slug }}">{{ pack.count }}</td>
-               <td role="col" class="text-center">{{ pack.product |discount_price |intcomma }}</td>
-               <td role="col" class="text-center total-price-{{ pack.product.slug }} ">{{ pack | product_total |intcomma  }}</td>
-               <td role="col" class="text-center">
-                   <div class="btn-group flex-row-reverse">
-                       <a href="{% url 'product:product' pack.product.slug 'add' %}" class="btn btn-outline-danger fw-bolder">+</a>
-                       <a href="{% url 'product:product' pack.product.slug 'remove' %}" class="btn btn-outline-danger">-</a>
-                    </div>
+               <tr class="row">
+               <td role="col" class="text-center col p-2 small">
+                   <small>{{ pack.product.name |name_title }}</small>
+               </td>
+               <td role="col" class="text-center col p-2 small">
+                   <small>{{ pack.count }}</small>
+               </td>
+               <td role="col" class="text-center col p-2 small">
+                   <small>{{ pack.product |discount_price |intcomma }}</small>
+               </td>
+               <td role="col" class="text-center col p-2 small">
+                   <small>{{ pack | product_total |intcomma  }}</small>
+               </td>
+               <td role="col" class="text-center col p-2 small">
+                   <small class="btn-group flex-row-reverse p-2">
+                       <a href="{% url 'product:product' pack.product.slug 'add' %}" class="btn btn-sm btn-outline-danger fw-bolder">+</a>
+                       <a href="{% url 'product:product' pack.product.slug 'remove' %}" class="btn btn-sm btn-outline-danger">-</a>
+                    </small>
                 </td>
                 </tr>
            {% endfor %}
            </tbody></table>
+           </div>
           <h4 class="fw-bold">مجموع کل :  {{ total |intcomma }} تومان</h4>
           <a href="{% url 'product:complete-cart' %}" class="btn btn-primary fw-bold">تکمیل خرید</a>
       {% else %}

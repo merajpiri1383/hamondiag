@@ -120,3 +120,12 @@ class CompleteCart(View):
             "total" : total,
             "postinfo": postinfo
         })
+class DeleteProduct(View):
+    def get(self,request,slug):
+        if request.user.is_staff :
+            try:
+                obj = Product.objects.get(slug=slug)
+                obj.delete()
+            except:
+                warning(request, "محصولی با این نام وجود ندارد")
+        return redirect("product:main")

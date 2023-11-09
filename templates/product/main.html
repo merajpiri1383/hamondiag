@@ -41,7 +41,7 @@
             {% if most_sells %}
                 <div class="m-auto shadow text-center mt-3 rounded p-3 row">
                 <div>
-                    <h1 class="text-danger fw-bold border-bottom border-danger pb-2 w-25 text-center">پرفروش ترین </h1>
+                    <h1 class="text-danger fw-bold border-bottom border-danger pb-2 text-center">پرفروش ترین </h1>
                 </div>
                 {% for product in most_sells %}
                 <div class="col-lg-3 col-12 col-sm-4 ">
@@ -54,21 +54,8 @@
                         {% thumbnail product.image "250x200" crop="center" as img %}
                             <img class="img-responsive w-100 rounded-3" src="{{ img.url }}">
                             {% endthumbnail %}
-                        <h4>{{ product.name |name_cut }}</h4>
-                        <div class="product-price text-muted ">
-                            <small>
-                                {% if product.price %}
-                                    {{ product | discount_price | intcomma}} تومان
-                                    {% else %}
-                                    جهت خرید لطفا تماس بگیرید
-                                {% endif %}
-                            </small>
-                        </div>
+                        <h4 class="small">{{ product.name |name_cut }}</h4>
                         <div class="btn-group">
-                            <a href="{% url 'product:product' product.slug 'add' %}" class="btn btn-outline-primary"> خرید</a>
-                            {% if request.user.is_staff %}
-                            <a href="{% url 'settings:product-update' product.slug %}" class="btn btn-outline-warning"> تغییر</a>
-                            {% endif %}
                             <a href="{% url 'product:product-detail' product.slug %}" class="btn btn-outline-danger">مشاهده</a>
                         </div>
                     </div>

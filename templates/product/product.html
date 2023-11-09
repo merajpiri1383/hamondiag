@@ -30,7 +30,7 @@
                     <h6 class="text-muted"> {{ product.description }}</h6>
                     <a href="{% url 'product:product' product.slug 'add' %}" class="btn btn-outline-danger">افزودن به سبد خرید</a>
                     {% if request.user.is_staff %}
-                        <button class="btn btn-outline-danger">حذف</button>
+                        <a href="{% url 'product:delete-product' product.slug %}" class="btn btn-outline-danger">حذف</a>
                     {% endif %}
                 </div>
             </div>
@@ -55,7 +55,7 @@
                             </small>
                         </div>
                         <div class="btn-group flex-row-reverse">
-                            <a href="{% url 'product:add-product' %}" class="btn btn-outline-primary"> خرید</a>
+                            <a href="{% url 'product:product' product.slug 'add' %}" class="btn btn-outline-primary"> خرید</a>
                             {% if request.user.is_staff %}
                             <a href="{% url 'settings:product-update' product.slug %}" class="btn btn-outline-warning"> تغییر</a>
                             {% endif %}
