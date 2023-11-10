@@ -35,3 +35,27 @@ showAndHide();
 window.addEventListener("resize",()=>{
     showAndHide();
 })
+// slider
+const slider = ()=> {
+    const count = $(".slide").length ;
+    let num = 1
+    if(count > 1){
+    setInterval(()=>{
+        changeSlide(num)
+        num ++ ;
+        if (num > count){
+            num = 1
+        }
+    },6000)
+    }else{
+        $(".slide-1").toggle();
+    }
+}
+const changeSlide = (num)=>{
+    console.log(num)
+    $(`.slide-${num}`).toggle(800);
+    setTimeout(()=>{
+        $(`.slide-${num}`).toggle(800);
+    },5500)
+};
+slider();

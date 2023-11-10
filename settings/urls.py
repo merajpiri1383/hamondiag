@@ -15,4 +15,5 @@ urlpatterns = [
     path("delete-tag/<slug:slug>/",login_required(views.DeleteTag.as_view()),name="delete-tag"),
     #   total
     path("total/",login_required(views.Total.as_view()),name="total"),
+    path("delete-poster/<int:id>/",login_required(views.DeletePoster.as_view()),name="delete-poster")
 ]

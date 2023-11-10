@@ -11,9 +11,13 @@
 {% endblock %}
 {% block content %}
     <div class="row">
-       {% if settings.poster %}
-           <div class="col-12 w-100 my-md-4 my-3 text-center">
-           <img src="{{ settings.poster.url }}" class="img-fluid rounded-3">
+       {% if settings.posters %}
+           <div class="slider text-center">
+           {% for poster in settings.posters.all %}
+               {% thumbnail poster.img "1300x500" crop="center" as img %}
+                   <img src="{{ img.url }}" class="img-fluid hide my-3 rounded-3 slide-{{ forloop.counter }} slide poster">
+               {% endthumbnail %}
+           {% endfor %}
            </div>
        {% endif %}
         <div class="col-12 w-100">

@@ -1,3 +1,4 @@
 from django.contrib import admin
-
-# Register your models here.
+from settings.models import Settings,Poster
+admin.site.register(Settings)
+admin.site.register(Poster)

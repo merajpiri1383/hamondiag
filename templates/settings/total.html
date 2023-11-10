@@ -15,8 +15,45 @@
                 {% endif %}
                 </div>
             {% endfor %}
-        <button type="submit" class="btn btn-outline-danger w-100">ذخیره</button>
+        <button type="submit" class="btn btn-outline-danger my-2 w-100">ذخیره</button>
         </form>
+        <button data-bs-toggle="modal" data-bs-target="#modal_add_poster" type="button" class="btn btn-outline-danger w-100">
+            افزودن پوستر
+        </button>
+        <div class="modal fade" tabindex="-1" id="modal_add_poster">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>افزودن پوستر</h3>
+                        <button class="btn-close m-3" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% for field in form_img %}
+                                <div class="row p-3 ">
+                                <label class="col-12 muted h4 fw-bold">{{ field.label }}</label>
+                                {% render_field field class="form-control" %}
+                                </div>
+                            {% endfor %}
+                            <button type="submit" class="btn btn-outline-danger w-100">افزودن </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="card my-3">
+        <div class="card-body">
+            {% for img in imgs %}
+                <div class="row my-1">
+                <img src="{{ img.img.url }}" class="col-12 col-md-2 offset-md-8 img-fluid ">
+                <div class="col-md-2 d-flex align-items-center col-12">
+                    <a href="{% url 'settings:delete-poster' img.id %}" class="btn btn-sm w-100 btn-outline-danger">حذف</a>
+                </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
     </div>
     </div>
 {% endblock %}

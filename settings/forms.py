@@ -1,6 +1,6 @@
 from django import forms
 from product.models import Product,Category,Tag
-from settings.models import Settings
+from settings.models import Settings,Poster
 class ProductForm(forms.ModelForm):
     class Meta :
         model = Product
@@ -16,12 +16,15 @@ class TagFrom(forms.ModelForm):
 class SettingsForm(forms.ModelForm):
     class Meta :
         model = Settings
-        fields = ["name","poster","phone","email","address","about"]
+        fields = ["name","phone","email","address","about"]
         labels = {
             "name":"نام",
-            "poster":"پوستر",
             "phone" : "شماره",
             "address":"آدرس",
             "email":"ایمیل",
             "about":"درباره"
         }
+class PosterForm(forms.ModelForm):
+    class Meta :
+        model = Poster
+        fields = ["img"]
