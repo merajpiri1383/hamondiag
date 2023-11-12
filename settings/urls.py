@@ -7,6 +7,7 @@ urlpatterns = [
     #   product
     path("add-product/",login_required(views.CreateProduct.as_view()),name="add-product"),
     path("update-product/<slug:slug>/",login_required(views.UpdateProduct.as_view()),name="product-update"),
+    path("delete-image-product/<int:pk>/",login_required(views.DeleteImgsProduct.as_view()),name="delete-img-product"),
     #   category
     path("add-category/",login_required(views.CreateCategoryView.as_view()),name="add-category"),
     path("delete-category/<slug:slug>/",login_required(views.DeleteCategory.as_view()),name="category-delete"),
@@ -15,5 +16,7 @@ urlpatterns = [
     path("delete-tag/<slug:slug>/",login_required(views.DeleteTag.as_view()),name="delete-tag"),
     #   total
     path("total/",login_required(views.Total.as_view()),name="total"),
-    path("delete-poster/<int:id>/",login_required(views.DeletePoster.as_view()),name="delete-poster")
+    path("delete-poster/<int:id>/",login_required(views.DeletePoster.as_view()),name="delete-poster"),
+    # complete carts
+    path("complete-carts/",login_required(views.completed_carts),name="complete-carts"),
 ]

@@ -94,3 +94,19 @@ header div{
     min-height: 55vh;
 }
 /* slider */
+.imgs-slide{
+    position: relative;
+}
+#btn-right{
+    right: 25px;
+}#btn-left{
+    left: 25px;
+}.btn-slider{
+    position: absolute;
+    top: 45%;
+    background-color: rgba(255, 255, 255, 0);
+    text-shadow: 1px 1px 10px white;
+}.btn-slider:active{
+    background-color: white;
+    color: black !important;
+}

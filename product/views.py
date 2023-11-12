@@ -7,7 +7,7 @@ from django.contrib.messages import warning
 from django.views.generic.detail import DetailView
 class MainView(View):
     def get(self,request):
-        page = request.GET.get("p",1) 
+        page = request.GET.get("p",1)
         category = request.GET.get("c")
         discount = request.GET.get("d")
         products = Product.objects.all().order_by("-created")
@@ -58,12 +58,15 @@ class CartView(View):
             pass
         dis = False
         total = 0
-        for cart_product in cart.cart_products.all() :
-            price = cart_product.product.price
-            if cart_product.product.discount :
-                dis = True
-                price = (100-cart_product.product.discount) * price / 100
-            total += price * cart_product.count
+        try :
+            for cart_product in cart.cart_products.all():
+                price = cart_product.product.price
+                if cart_product.product.discount:
+                    dis = True
+                    price = (100 - cart_product.product.discount) * price / 100
+                total += price * cart_product.count
+        except :
+            pass
         if dis :
             total = str(total)[0:-2]
         return render(request,"product/cart.html",{"cart":cart,"total":total})
@@ -102,6 +105,7 @@ class CompleteCart(View):
         cart = request.user.carts.filter(is_open=True,is_paid=False).first()
         try :
             postinfo = request.user.post
+            return redirect("request")
         except :
             warning(request,"شما هنوز اطاعات پستی را کامل نکرده اید .")
             return redirect("post-info")

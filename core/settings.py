@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'product.apps.ProductConfig',
     'settings.apps.SettingsConfig',
     'blog.apps.BlogConfig',
+    'zarin.apps.ZarinConfig',
     # external apps
     'sorl.thumbnail',
     'widget_tweaks',
@@ -116,6 +117,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+MERCHANT = "59021f5c-72fa-4d1d-8b66-407656ff8c76"
+SANDBOX  = None
 STATIC_ROOT = BASE_DIR /"staticfiles"
 STATICFILES_DIRS = [
     BASE_DIR / "static"

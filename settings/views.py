@@ -1,11 +1,13 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from settings.models import Settings,Poster
+from django.contrib.messages import warning
 from django.urls import reverse_lazy
 from settings.forms import (ProductForm,CategoryForm,TagFrom,
-                            SettingsForm,PosterForm)
-from product.models import Product,Category,Tag
+                            SettingsForm,PosterForm,ImageForm)
+from product.models import Product,Category,Tag,Image,Cart
 from django.views.generic import CreateView,UpdateView,DeleteView,FormView,View
+from django.views.generic.base import TemplateResponseMixin
 class BaseView(LoginRequiredMixin) :
     template_name = "settings/product.html"
     success_url = reverse_lazy("settings:settings")
@@ -28,11 +30,48 @@ class CreateTag(BaseView,CreateView):
 class SettingsView(View):
     def get(self,request):
         return render(request,"settings/settings.html")
-class UpdateProduct(BaseView,UpdateView):
+class UpdateProduct(TemplateResponseMixin,View):
     template_name = "settings/product.html"
-    model = Product
-    fields = ["name","price","discount","image","description","category","tags"]
-    success_url = reverse_lazy("product:main")
+    product = None
+    def dispatch(self,request,slug):
+        try :
+            self.product = Product.objects.get(slug=slug)
+        except :
+            return redirect("settings:settings")
+        return super().dispatch(request,slug)
+    def get(self,request,slug):
+        form = ProductForm(instance=self.product)
+        add_image_form = ImageForm()
+        return self.render_to_response({
+            "form" : form,
+            "add_image_form" : add_image_form,
+            "product" : self.product
+        })
+    def post(self,request,slug):
+        form = ProductForm(request.POST,request.FILES,instance=self.product)
+        add_image_form = ImageForm(request.POST,request.FILES)
+        print(add_image_form.is_valid())
+        print(form.is_valid())
+        if form.is_valid() and not add_image_form.is_valid():
+            print("form 1")
+            form.save()
+            return redirect("settings:product-update",self.product.slug)
+        if add_image_form.is_valid() :
+            obj = add_image_form.save(commit=False)
+            obj.product = self.product
+            if self.product.images.all().count() <= 3 :
+                obj.save()
+            else :
+                warning(request,"شما ۴ تصویر برای این محصول دارید ")
+            return redirect("settings:product-update",self.product.slug)
+class DeleteImgsProduct(View):
+    def get(self,request,pk):
+        try :
+            obj = Image.objects.get(id=pk)
+            obj.delete()
+            return redirect("product:main")
+        except :
+            return redirect("product:main")
 class DeleteCategory(DeleteView):
     template_name = "product/main.html"
     model = Category
@@ -71,3 +110,6 @@ class DeletePoster(View):
         except :
             warnings(request,'پوستری با این id وجود ندارد')
         return redirect("settings:settings")
+def completed_carts(request):
+    carts = Cart.objects.filter(is_open=False,is_paid=True)
+    return render(request,"settings/carts.html",{"carts":carts})

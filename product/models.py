@@ -51,6 +51,12 @@ class Cart(models.Model):
     is_paid = models.BooleanField(default=False)
     is_open = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
+    def get_total_price(self):
+        total_price = 0
+        for pack in self.cart_products.all():
+            total_price = pack.count * pack.product.price
+        total_price = total_price
+        return total_price
     def __str__(self):
         return str(self.user)
 class CartProduct(models.Model):

@@ -5,6 +5,11 @@ const linkSectionMobile = $("#link-section-mobile");
 const categorys = $("#categorys");
 const btnCategory = $("#btn-category");
 const categorysMobile = $("#categorys-mobile");
+const btnUpdateProduct = $("#btn-add-product");
+const formUpdateProduct =$("#form-update-product");
+btnUpdateProduct.click(()=>{
+    formUpdateProduct.submit();
+})
 const showAndHide = ()=>{
     if(window.innerWidth <= 768){
         barSection.removeClass("hide")
@@ -35,27 +40,6 @@ showAndHide();
 window.addEventListener("resize",()=>{
     showAndHide();
 })
-// slider
-const slider = ()=> {
-    const count = $(".slide").length ;
-    let num = 1
-    if(count > 1){
-    setInterval(()=>{
-        changeSlide(num)
-        num ++ ;
-        if (num > count){
-            num = 1
-        }
-    },6000)
-    }else{
-        $(".slide-1").toggle();
-    }
+function cartOpen(id){
+    $(`.cart-${id}`).toggle(1000);
 }
-const changeSlide = (num)=>{
-    console.log(num)
-    $(`.slide-${num}`).toggle(800);
-    setTimeout(()=>{
-        $(`.slide-${num}`).toggle(800);
-    },5500)
-};
-slider();

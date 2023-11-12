@@ -1,17 +1,62 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
-{#{% block title %}#}
-{#    محصول#}
-{#{% endblock %}#}
+{% load thumbnail %}
+{% block title %}
+    محصول
+{% endblock %}
 {% block content %}
     <div class="container">
     <div class="card my-4 shadow">
-        <form method="post" enctype="multipart/form-data" class="card-body">
+        <form id="form-update-product" method="post" enctype="multipart/form-data" class="card-body">
         {% csrf_token %}
         {% for field in form %}
             {% render_field field class="form-control my-2" placeholder=field.label %}
         {% endfor %}
-        <button class="btn btn-outline-danger form-control" type="submit">افزودن</button>
+        <button class="btn btn-outline-danger form-control" id="btn-add-product" type="button">افزودن</button>
+        {% if add_image_form %}
+            <div>
+            <button data-bs-toggle="modal" data-bs-target="#add_picture_product" class="btn btn-outline-danger my-2 form-control" type="button">افزودن تصویر</button>
+            <div id="add_picture_product" class="modal fade">
+            <div class="modal-dialog" role="dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>افزودن تصویر</h3>
+                        <button data-bs-dismiss="modal" class="btn-close m-3"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% for field in add_image_form %}
+                            {% if forloop.last %}
+                                {% render_field field %}
+                                {% else %}
+                                {% render_field field class="form-control"  %}
+                            {% endif %}
+                            {% endfor %}
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline-danger form-control">افزودن</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="card">
+            <div class="card-body">
+                {% for obj in product.images.all %}
+                    <div class="shadow my-2 d-flex justify-content-between">
+                    {% thumbnail obj.image "200x150" crop="center" quality=100 as img %}
+                        <img src="{{ img.url }}" class="img-fluid rounded-3">
+                    {% endthumbnail %}
+                    <div class="d-flex align-items-center p-2">
+                        <a href="{% url 'settings:delete-img-product' obj.id %}" class="btn btn-outline-danger">delete</a>
+                    </div>
+                    </div>
+                {% endfor %}
+            </div>
+            </div>
+            </div>
+        {% endif %}
     </form>
     </div>
     <div class="card">

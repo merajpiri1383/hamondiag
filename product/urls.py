@@ -3,6 +3,7 @@ from product import views
 from django.contrib.auth.decorators import login_required
 app_name= "product"
 urlpatterns = [
+    # product
     path("complete-cart/",login_required(views.CompleteCart.as_view()),name="complete-cart"),
     path("cart/",login_required(views.CartView.as_view()),name="cart"),
     path("",views.MainView.as_view(),name="main"),

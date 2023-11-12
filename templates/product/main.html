@@ -3,21 +3,31 @@
 {% load tags %}
 {% load humanize %}
 {% load thumbnail %}
-{#{% block title %}#}
-{#    هامون دیاگ#}
-{#{% endblock %}#}
+{% block title %}
+    هامون دیاگ
+{% endblock %}
 {% block link %}
     <link rel="stylesheet" href="{% static 'product/products.css' %}">
 {% endblock %}
 {% block content %}
     <div class="row">
        {% if settings.posters %}
-           <div class="slider text-center">
-           {% for poster in settings.posters.all %}
-               {% thumbnail poster.img "1300x500" crop="center" as img %}
-                   <img src="{{ img.url }}" class="img-fluid hide my-3 rounded-3 slide-{{ forloop.counter }} slide poster">
-               {% endthumbnail %}
-           {% endfor %}
+           <div class="carousel slide" id="carousel" data-bs-ride="carousel">
+           <div class="carousel-inner">
+               {% for poster in settings.posters.all %}
+                   <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                   {% thumbnail poster.img "1340x500" quality=100 crop="center" as img %}
+                   <img src="{{ img.url }}" class="img-fluid w-100 my-3 rounded-3 slide-{{ forloop.counter }} slide poster">
+                   {% endthumbnail %}
+                   </div>
+               {% endfor %}
+           </div>
+           <button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carousel">
+               <span class="carousel-control-prev-icon"></span>
+           </button>
+           <button class="carousel-control-next" data-bs-slide="next" data-bs-target="#carousel">
+               <span class="carousel-control-next-icon"></span>
+           </button>
            </div>
        {% endif %}
         <div class="col-12 w-100">

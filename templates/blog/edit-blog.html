@@ -2,9 +2,9 @@
 {% load thumbnail %}
 {% load widget_tweaks %}
 {% load static %}
-{#{% block title %}#}
-{#    تغییر مقاله#}
-{#{% endblock %} #}
+{% block title %}
+    تغییر مقاله
+{% endblock %}
 {% block content %}
 <div class="container row">
     {% include 'includes/last_blogs.html' with last_blogs=last_blogs %}

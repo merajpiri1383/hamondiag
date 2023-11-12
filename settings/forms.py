@@ -1,5 +1,5 @@
 from django import forms
-from product.models import Product,Category,Tag
+from product.models import Product,Category,Tag,Image
 from settings.models import Settings,Poster
 class ProductForm(forms.ModelForm):
     class Meta :
@@ -28,3 +28,8 @@ class PosterForm(forms.ModelForm):
     class Meta :
         model = Poster
         fields = ["img"]
+class ImageForm(forms.ModelForm):
+    is_save = forms.BooleanField()
+    class Meta :
+        model = Image
+        fields = ["image","is_save"]
