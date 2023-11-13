@@ -8,15 +8,28 @@
     <div class="container">
     <div class="card my-md-5 my-3">
         <div class="card-body">
-            {% for cart in carts %}
+            {% for pack in object %}
                 <div class="card my-2">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="h3 border bg-danger text-light p-2 px-3 rounded-3">{{ forloop.counter }}</span>
-                        <h5>{{ cart.created |date }}</h5>
-                        <button onclick="cartOpen('{{ cart.id }}')" class="btn btn btn-outline-danger fw-bolder">+</button>
+                        <h5>{{ pack.cart.created |date }}</h5>
+                        <button onclick="cartOpen('{{ pack.cart.id }}')" class="btn btn btn-outline-danger fw-bolder">+</button>
                     </div>
-                    <div class="hide cart-{{ cart.id }}">
+                    <div class="hide cart-{{ pack.cart.id }}">
+                    <div class="card my-3">
+                           <div class="card-body">
+                               <div>
+                                   <h5 class="d-flex justify-content-between">نام و نام خانوادگی : {{ pack.postinfo.name }}</h5><hr>
+                                   <h5 class="d-flex justify-content-between">شماره : {{ pack.postinfo.mobile }}</h5><hr>
+                                   <h5 class="d-flex justify-content-between">شماره ضروری : {{ pack.postinfo.mobile_2 }}</h5><hr>
+                                   <h5 class="d-flex justify-content-between">  استان : {{ pack.postinfo.state }} </h5><hr>
+                                   <h5 class="d-flex justify-content-between">شهر : {{ pack.postinfo.city }} </h5><hr>
+                                   <h5 class="d-flex justify-content-between">  کد پستی : {{ pack.postinfo.code_post }}</h5><hr>
+                                   <h5 class="d-flex justify-content-between">آدرس : {{ pack.postinfo.address }}</h5>
+                               </div>
+                           </div>
+                       </div>
                         <div class="card my-2">
                     <table class="table card-body">
                         <thead>
@@ -27,7 +40,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {% for pack in cart.cart_products.all %}
+                        {% for pack in pack.cart.cart_products.all %}
                         <tr>
                         <td class="text-center">{{ pack.product.name }}</td>
                         <td class="text-center">{{ pack.product.price |intcomma }}</td>

@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from settings.models import Settings,Poster
 from django.contrib.messages import warning
+from authentication.models import PostInfo
 from django.urls import reverse_lazy
 from settings.forms import (ProductForm,CategoryForm,TagFrom,
                             SettingsForm,PosterForm,ImageForm)
@@ -98,8 +99,12 @@ class Total(View):
                 return redirect("settings:settings")
             if form_img.is_valid():
                 obj = form_img.save(commit=False)
-                obj.setting = Settings.objects.all().first()
-                obj.save()
+                try :
+                    obj.setting = Settings.objects.all().first()
+                    obj.save()
+                except :
+                    warning(request,"جهت افزودن پوستر ابتدا باید تنظمات کلی را پر کنید")
+                    return redirect("settings:total")
                 return redirect("settings:settings")
             return render(request,"settings/total.html",{"form":form,"form_img":form_img})
 class DeletePoster(View):
@@ -112,4 +117,10 @@ class DeletePoster(View):
         return redirect("settings:settings")
 def completed_carts(request):
     carts = Cart.objects.filter(is_open=False,is_paid=True)
-    return render(request,"settings/carts.html",{"carts":carts})
+    objects = []
+    for cart in carts :
+        objects.append({
+            "cart": cart,
+            "postinfo" : PostInfo.objects.get(user=cart.user)
+        })
+    return render(request,"settings/carts.html",{"object":objects})

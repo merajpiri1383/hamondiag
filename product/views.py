@@ -59,6 +59,10 @@ class CartView(View):
         dis = False
         total = 0
         try :
+            print(cart.user)
+        except :
+            pass
+        try :
             for cart_product in cart.cart_products.all():
                 price = cart_product.product.price
                 if cart_product.product.discount:

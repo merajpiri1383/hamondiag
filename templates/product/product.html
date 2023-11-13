@@ -10,18 +10,20 @@
         <div class="container-md">
             <div class="card m-auto p-3">
             <div class="row">
-                <div class="col-12 align-items-center d-flex">
+                <div class="col-12 col-md-6 align-items-center d-flex">
                     {% thumbnail product.image "300x200" crop="center" as img %}
                     <img src="{{ img.url }}" class="img-responsive w-100 rounded-3">
                     {% endthumbnail %}
                 </div>
                 {% if product.images.all %}
-                    <div class="col-12 p-3">
+                    <div class="col-12 col-md-6">
                         <div class="row">
                             {% for obj in product.images.all %}
+                            <div class="col-6 my-1">
                             {% thumbnail obj.image "200x150" crop="center" quality=100 as img %}
-                            <img src="{{ img.url }}" class="col-6 my-1 col-md-3 rounded-2">
+                            <img src="{{ img.url }}" class="w-100 rounded-2">
                             {% endthumbnail %}
+                            </div>
                             {% endfor %}
                         </div>
                     </div>

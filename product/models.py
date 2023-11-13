@@ -54,7 +54,10 @@ class Cart(models.Model):
     def get_total_price(self):
         total_price = 0
         for pack in self.cart_products.all():
-            total_price = pack.count * pack.product.price
+            price = pack.product.price
+            if pack.product.discount :
+                price = (100 - pack.product.discount) /100 * price
+            total_price = pack.count * price
         total_price = total_price
         return total_price
     def __str__(self):

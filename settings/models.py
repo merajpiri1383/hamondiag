@@ -5,7 +5,7 @@ class Settings(models.Model):
     email = models.EmailField()
     address = models.TextField(blank=True,null=True)
     about = models.TextField(blank=True,null=True)
-    phone = models.PositiveIntegerField()
+    phone = models.PositiveBigIntegerField()
     def __str__(self):
         return self.name
 class Poster(models.Model):
