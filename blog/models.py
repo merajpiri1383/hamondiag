@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.contrib.contenttypes.models import ContentType
+from django.utils.crypto import get_random_string
 from django.contrib.contenttypes.fields import GenericForeignKey
 class Blog(models.Model):
     name = models.CharField(max_length=300,unique=True)
@@ -9,7 +10,7 @@ class Blog(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     def save(self,*args,**kwargs):
-        self.slug = slugify(self.name)
+        self.slug = slugify(get_random_string(15))
         return super().save(*args,**kwargs)
     def __str__(self):
         return self.name

@@ -25,8 +25,8 @@ posts_method = [
 class PostInfo(models.Model):
     user = models.OneToOneField(get_user_model(),on_delete=models.CASCADE,related_name="post")
     name = models.CharField(max_length=250)
-    mobile = models.PositiveIntegerField()
-    mobile_2 = models.PositiveIntegerField()
+    mobile = models.PositiveBigIntegerField()
+    mobile_2 = models.PositiveBigIntegerField()
     state = OstanField()
     city = ShahrField()
     code_post = models.PositiveIntegerField()
