@@ -126,7 +126,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-KAVENEGAR_API_KEY = "562F6843774C59744C796C4A6F79612B4A3657684778567852494F416B574F61654F376C314737707236453D"
+KAVENEGAR_API_KEY = "***************************************"
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
